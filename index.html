@@ -10,14 +10,30 @@
 html{scroll-behavior:smooth}
 body{font-family:'Open Sans',sans-serif;color:#1a2744;background:#fff}
 
-nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 4%}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px;max-width:1200px;margin:0 auto}
+/* NAV */
+nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px;max-width:1200px;margin:0 auto;padding:0 4%}
+.nav-logo{display:flex;align-items:center;gap:10px;background:#1a2744;padding:6px 14px;border-radius:8px}
+.nav-logo img{height:48px;display:block}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-logo-text span:first-child{font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.1}
+.nav-logo-text span:last-child{font-size:8px;letter-spacing:2.5px;color:#c9a227;text-transform:uppercase;font-weight:600}
 .nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:#1a2744;font-size:13px;font-weight:600;letter-spacing:.3px;transition:color .2s}
 .nav-links a:hover{color:#c9a227}
 .nav-cta{background:#1a2744;color:#fff!important;padding:9px 18px;border-radius:4px}
 .nav-cta:hover{background:#c9a227!important}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:24px;height:2px;background:#1a2744;border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;background:#fff;border-top:1px solid #e2e8f0;padding:16px 4%;flex-direction:column;gap:0}
+.mobile-menu a{display:block;padding:12px 0;color:#1a2744;text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid #f0f4f8}
+.mobile-menu a:last-child{border-bottom:none;margin-top:8px;background:#1a2744;color:#fff;text-align:center;padding:12px;border-radius:6px}
+.mobile-menu.open{display:flex}
 
+/* HERO */
 .hero{background:linear-gradient(135deg,#0a1628 0%,#1a2f5e 55%,#0d1e3a 100%);color:#fff;padding:80px 4% 60px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:-100px;bottom:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,162,39,.1) 0%,transparent 65%);pointer-events:none}
 .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:50px;align-items:center}
@@ -30,10 +46,11 @@ nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e
 .btn-gold:hover{background:#a8861e}
 .btn-outline{border:1.5px solid rgba(255,255,255,.45);color:#fff;padding:11px 24px;border-radius:4px;text-decoration:none;font-weight:600;font-size:14px;transition:all .2s;display:inline-block}
 .btn-outline:hover{border-color:#c9a227;color:#c9a227}
-.pillars{display:flex;gap:20px}
+.pillars{display:flex;gap:20px;flex-wrap:wrap}
 .pillar-word{font-size:17px;font-weight:700;color:#c9a227;font-family:'Merriweather',serif}
 .pillar-line{font-size:10px;opacity:.6;letter-spacing:1px;text-transform:uppercase}
 
+/* ADVISOR CARD */
 .advisor-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:28px 22px;text-align:center}
 .adv-photo-ring{width:130px;height:130px;border-radius:50%;border:3px solid #c9a227;margin:0 auto 14px;overflow:hidden;background:rgba(201,162,39,.15)}
 .adv-photo-ring img{width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -44,11 +61,13 @@ nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e
 .adv-tag{background:rgba(255,255,255,.07);border-radius:7px;padding:9px 12px;font-size:12px;display:flex;align-items:center;gap:8px;text-align:left}
 .adv-dot{width:7px;height:7px;border-radius:50%;background:#c9a227;flex-shrink:0}
 
+/* TRUST BAR */
 .trust-bar{background:#0d1424;padding:14px 4%;border-bottom:1px solid rgba(201,162,39,.2)}
 .trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px}
 .trust-item{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.8);font-size:12px;font-weight:600}
 .trust-dot{color:#c9a227}
 
+/* SECTIONS */
 section{padding:76px 4%}
 .sec-inner{max-width:1200px;margin:0 auto}
 .sec-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:8px}
@@ -84,21 +103,6 @@ section{padding:76px 4%}
 .int-tile strong{display:block;color:#c9a227;font-size:12px;margin-bottom:2px}
 .int-tile span{font-size:11.5px;opacity:.8;line-height:1.5}
 
-/* X CURVE */
-.xcurve-bg{background:#0a1628;color:#fff}
-.xcurve-inner{max-width:1200px;margin:0 auto}
-.xcurve-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-top:40px}
-.xcurve-text p{font-size:14.5px;opacity:.85;line-height:1.85;margin-bottom:14px}
-.xcurve-cards{display:flex;flex-direction:column;gap:14px}
-.xc-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
-.xc-card:hover{border-color:rgba(201,162,39,.5)}
-.xc-icon{font-size:24px;flex-shrink:0;margin-top:2px}
-.xc-card h4{font-size:14px;font-weight:700;color:#c9a227;margin-bottom:5px}
-.xc-card p{font-size:13px;opacity:.8;line-height:1.65}
-
-/* X CURVE SVG chart */
-.xcurve-chart{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
-
 /* WHY */
 .why-bg{background:#f7f8fc}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
@@ -118,13 +122,14 @@ section{padding:76px 4%}
 .c-ico svg{width:16px;height:16px;fill:#c9a227}
 .c-row span,.c-row a{font-size:13.5px;opacity:.85;line-height:1.6;color:#fff;text-decoration:none}
 .c-row a:hover{color:#c9a227}
-.soc-row{display:flex;gap:10px;margin-top:4px}
+.soc-row{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
 .soc-btn{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s}
 .soc-btn:hover{opacity:.88}
 .soc-fb{background:#1877f2;color:#fff}
 .soc-sms{background:#34a853;color:#fff}
 .soc-ico{width:16px;height:16px;fill:#fff;flex-shrink:0}
 
+/* FORM */
 .contact-form{background:#fff;border-radius:12px;padding:32px}
 .form-head{font-size:18px;font-weight:700;color:#1a2744;margin-bottom:4px;font-family:'Merriweather',serif}
 .form-sub{font-size:13px;color:#4a5568;margin-bottom:20px}
@@ -137,24 +142,53 @@ section{padding:76px 4%}
 .submit-btn{width:100%;background:#c9a227;color:#fff;border:none;padding:13px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Open Sans',sans-serif;transition:background .2s;margin-top:4px}
 .submit-btn:hover{background:#a8861e}
 .form-note{font-size:11px;color:#718096;text-align:center;margin-top:8px}
-#success-msg{display:none;background:#f0faf4;border:1px solid #68d391;border-radius:8px;padding:14px;margin-top:12px;text-align:center}
 
+/* SUCCESS + CALENDAR */
+#success-msg{display:none;background:#f0faf4;border:1px solid #68d391;border-radius:8px;padding:16px;margin-top:12px;text-align:center}
+.cal-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.cal-btn{display:flex;align-items:center;gap:7px;padding:10px 16px;border-radius:6px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Open Sans',sans-serif;transition:opacity .2s}
+.cal-btn:hover{opacity:.88}
+.cal-ics{background:#1a2744;color:#fff}
+.cal-google{background:#ea4335;color:#fff}
+
+/* FOOTER */
 footer{background:#060d1a;color:rgba(255,255,255,.5);text-align:center;padding:28px 4%;font-size:12px;line-height:1.8}
 footer strong{color:#c9a227}
 footer a{color:#c9a227;text-decoration:none}
 .footer-disc{font-size:11px;opacity:.55;margin-top:10px;max-width:900px;margin-left:auto;margin-right:auto;line-height:1.7}
 
+/* ── MOBILE ── */
 @media(max-width:900px){
-  .hero-inner,.about-grid,.contact-grid,.xcurve-grid{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .advisor-card{display:none}
+  .hero{padding:50px 4% 40px}
+  .hero h1{font-size:26px}
+  .hero-sub{font-size:14px}
+  .pillars{gap:12px}
+  .pillar-word{font-size:14px}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-box img{height:300px}
+  .contact-grid{grid-template-columns:1fr}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:repeat(2,1fr)}
-  .advisor-card{display:none}
-  .hero h1{font-size:28px}
   .int-grid{grid-template-columns:1fr}
+  .trust-inner{gap:8px}
+  .trust-item{font-size:11px}
+  section{padding:50px 4%}
+  .sec-title{font-size:24px}
+  .contact-form{padding:22px 16px}
+  .fr{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .svc-grid,.why-grid{grid-template-columns:1fr}
-  .fr{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .hero h1{font-size:22px}
+  .cal-btns{flex-direction:column}
+  .cal-btn{width:100%;justify-content:center}
+  .hero-btns{flex-direction:column}
+  .btn-gold,.btn-outline{text-align:center}
 }
 </style>
 </head>
@@ -163,23 +197,12 @@ footer a{color:#c9a227;text-decoration:none}
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div style="display:flex;align-items:center;gap:10px">
-      <svg width="88" height="88" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100 185 C60 165 25 135 25 95 L25 45 L100 20 L175 45 L175 95 C175 135 140 165 100 185Z" fill="#1a3a6e"/>
-        <rect x="44" y="105" width="22" height="55" rx="3" fill="#c9a227" opacity=".85"/>
-        <rect x="72" y="85" width="22" height="75" rx="3" fill="#c9a227" opacity=".92"/>
-        <rect x="100" y="65" width="22" height="95" rx="3" fill="#c9a227"/>
-        <rect x="128" y="95" width="22" height="65" rx="3" fill="#c9a227" opacity=".78"/>
-        <polyline points="44,130 72,100 100,115 155,65" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <polygon points="155,65 145,80 168,78" fill="#fff"/>
-        <ellipse cx="86" cy="32" rx="10" ry="14" fill="#c9a227" transform="rotate(-20,86,32)"/>
-        <ellipse cx="100" cy="24" rx="9" ry="13" fill="#c9a227"/>
-        <ellipse cx="114" cy="32" rx="10" ry="14" fill="#c9a227" transform="rotate(20,114,32)"/>
-        <rect x="97" y="24" width="6" height="20" rx="3" fill="#1a3a6e"/>
-      </svg>
-      <div>
-        <div style="font-family:'Merriweather',serif;font-size:17px;font-weight:700;color:#1a2744;line-height:1.1">SafeInvest</div>
-        <div style="font-size:9px;letter-spacing:2.5px;color:#6b7280;text-transform:uppercase;font-weight:600">Financials</div>
+    <div class="nav-logo">
+      <img src="logo.png" alt="SafeInvest Financials logo"
+        onerror="this.style.display='none'"/>
+      <div class="nav-logo-text">
+        <span>SafeInvest</span>
+        <span>Financials</span>
       </div>
     </div>
     <ul class="nav-links">
@@ -188,6 +211,15 @@ footer a{color:#c9a227;text-decoration:none}
       <li><a href="#why">Why Us</a></li>
       <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
     </ul>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#why" onclick="closeMenu()">Why Us</a>
+    <a href="#contact" onclick="closeMenu()">Free Consultation →</a>
   </div>
 </nav>
 
@@ -211,10 +243,8 @@ footer a{color:#c9a227;text-decoration:none}
       </div>
     </div>
     <div class="advisor-card">
-      <div class="adv-photo-ring" style="background:#1a2744;display:flex;align-items:center;justify-content:center">
-        <img src="lalita.jpg" alt="Lalita Kumar"
-          style="width:100%;height:100%;object-fit:cover;object-position:center top"
-        />
+      <div class="adv-photo-ring">
+        <img src="lalita.jpg" alt="Lalita Kumar"/>
       </div>
       <div class="adv-name">Lalita Kumar</div>
       <div class="adv-title">Financial Advisor · SafeInvest Financials</div>
@@ -248,94 +278,14 @@ footer a{color:#c9a227;text-decoration:none}
     <h2 class="sec-title">8 Strategies to Build Your Financial Foundation</h2>
     <p class="sec-sub">Think of your financial plan as a table with eight legs — miss one and it wobbles. We help you build all eight, so your family's security stands through any storm.</p>
     <div class="svc-grid">
-      <div class="svc-card">
-        <span class="svc-ico">📈</span>
-        <h3>Indexed Universal Life (IUL)</h3>
-        <p>Flexible life protection with tax-free cash value growth. Linked to market upside with a 0% floor — you never lose principal when markets fall.</p>
-        <ul class="svc-bullets">
-          <li>Tax-free growth &amp; withdrawals</li>
-          <li>Living benefits included</li>
-          <li>Retirement income supplement</li>
-          <li>Market gains, zero losses</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">🏦</span>
-        <h3>Fixed Indexed Annuity</h3>
-        <p>Guaranteed retirement income with principal protection and tax-deferred growth. Your own personal pension — a paycheck you literally cannot outlive.</p>
-        <ul class="svc-bullets">
-          <li>Guaranteed lifetime income</li>
-          <li>Principal always protected</li>
-          <li>Tax-deferred accumulation</li>
-          <li>Linked to S&amp;P 500 upside</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">🛡️</span>
-        <h3>Term Life Insurance</h3>
-        <p>Affordable coverage for 10, 20, or 30 years to protect your family's income during the years it matters most — at the lowest possible cost.</p>
-        <ul class="svc-bullets">
-          <li>10, 20, 30-year terms</li>
-          <li>Income replacement coverage</li>
-          <li>Convertible to permanent</li>
-          <li>Fast approval options</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">🏠</span>
-        <h3>Mortgage Protection</h3>
-        <p>Safeguard your home and family if the unexpected happens. Ensure your mortgage is paid and your family keeps their home — no matter what.</p>
-        <ul class="svc-bullets">
-          <li>Covers mortgage balance</li>
-          <li>Critical illness riders</li>
-          <li>Disability income protection</li>
-          <li>Return of premium options</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">🎓</span>
-        <h3>College Planning</h3>
-        <p>Smart education funding that protects your savings from market losses. Give your children a debt-free education without jeopardizing your retirement.</p>
-        <ul class="svc-bullets">
-          <li>Protected from market crashes</li>
-          <li>No FAFSA impact strategies</li>
-          <li>Tax-advantaged growth</li>
-          <li>Funds roll over if unused</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">💰</span>
-        <h3>Tax-Free Retirement</h3>
-        <p>Strategic withdrawal planning to minimize taxes and maximize retirement income. Stop paying taxes on money you already earned — legally and permanently.</p>
-        <ul class="svc-bullets">
-          <li>IUL-based tax-free income</li>
-          <li>Roth conversion strategies</li>
-          <li>Social Security optimization</li>
-          <li>Required minimum distribution planning</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">♿</span>
-        <h3>LTC / Disability</h3>
-        <p>1 in 4 workers will become disabled before retirement. Your income stops — but your bills don't. We make sure you're always covered.</p>
-        <ul class="svc-bullets">
-          <li>Long-term care insurance</li>
-          <li>Short &amp; long-term disability</li>
-          <li>Hybrid LTC/life products</li>
-          <li>Asset-based LTC plans</li>
-        </ul>
-      </div>
-      <div class="svc-card">
-        <span class="svc-ico">📜</span>
-        <h3>Estate Planning</h3>
-        <p>Your life's work shouldn't disappear. We coordinate strategies so your wealth transfers to the right people, at the right time, with minimal taxes.</p>
-        <ul class="svc-bullets">
-          <li>Beneficiary optimization</li>
-          <li>Wealth transfer strategies</li>
-          <li>Business succession plans</li>
-          <li>Trust coordination support</li>
-        </ul>
-      </div>
+      <div class="svc-card"><span class="svc-ico">📈</span><h3>Indexed Universal Life (IUL)</h3><p>Flexible life protection with tax-free cash value growth. Linked to market upside with a 0% floor — you never lose principal when markets fall.</p><ul class="svc-bullets"><li>Tax-free growth &amp; withdrawals</li><li>Living benefits included</li><li>Retirement income supplement</li><li>Market gains, zero losses</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">🏦</span><h3>Fixed Indexed Annuity</h3><p>Guaranteed retirement income with principal protection and tax-deferred growth. Your own personal pension — a paycheck you literally cannot outlive.</p><ul class="svc-bullets"><li>Guaranteed lifetime income</li><li>Principal always protected</li><li>Tax-deferred accumulation</li><li>Linked to S&amp;P 500 upside</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">🛡️</span><h3>Term Life Insurance</h3><p>Affordable coverage for 10, 20, or 30 years to protect your family's income during the years it matters most — at the lowest possible cost.</p><ul class="svc-bullets"><li>10, 20, 30-year terms</li><li>Income replacement coverage</li><li>Convertible to permanent</li><li>Fast approval options</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">🏠</span><h3>Mortgage Protection</h3><p>Safeguard your home and family if the unexpected happens. Ensure your mortgage is paid and your family keeps their home — no matter what.</p><ul class="svc-bullets"><li>Covers mortgage balance</li><li>Critical illness riders</li><li>Disability income protection</li><li>Return of premium options</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">🎓</span><h3>College Planning</h3><p>Smart education funding that protects your savings from market losses. Give your children a debt-free education without jeopardizing your retirement.</p><ul class="svc-bullets"><li>Protected from market crashes</li><li>No FAFSA impact strategies</li><li>Tax-advantaged growth</li><li>Funds roll over if unused</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">💰</span><h3>Tax-Free Retirement</h3><p>Strategic withdrawal planning to minimize taxes and maximize retirement income. Stop paying taxes on money you already earned — legally and permanently.</p><ul class="svc-bullets"><li>IUL-based tax-free income</li><li>Roth conversion strategies</li><li>Social Security optimization</li><li>RMD planning</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">♿</span><h3>LTC / Disability</h3><p>1 in 4 workers will become disabled before retirement. Your income stops — but your bills don't. We make sure you're always covered.</p><ul class="svc-bullets"><li>Long-term care insurance</li><li>Short &amp; long-term disability</li><li>Hybrid LTC/life products</li><li>Asset-based LTC plans</li></ul></div>
+      <div class="svc-card"><span class="svc-ico">📜</span><h3>Estate Planning</h3><p>Your life's work shouldn't disappear. We coordinate strategies so your wealth transfers to the right people, at the right time, with minimal taxes.</p><ul class="svc-bullets"><li>Beneficiary optimization</li><li>Wealth transfer strategies</li><li>Business succession plans</li><li>Trust coordination support</li></ul></div>
     </div>
   </div>
 </section>
@@ -345,9 +295,7 @@ footer a{color:#c9a227;text-decoration:none}
   <div class="sec-inner">
     <div class="about-grid">
       <div class="about-img-box">
-        <img src="lalita.jpg" alt="Lalita Kumar, Financial Advisor"
-          style="width:100%;display:block;height:460px;object-fit:cover;object-position:center top"
-        />
+        <img src="lalita.jpg" alt="Lalita Kumar, Financial Advisor"/>
         <div class="about-overlay">
           <div class="about-badge-row">
             <div class="about-badge">Regional Marketing Director</div>
@@ -369,7 +317,7 @@ footer a{color:#c9a227;text-decoration:none}
           <h4>Powered by Integrity — America's Trusted Insurance Platform</h4>
           <p>I place my clients' policies through <strong style="color:#c9a227">Integrity</strong>, one of America's largest insurance and financial services platforms — serving over <strong style="color:#c9a227">11 million</strong> customers with access to top A-rated Fortune 50 carriers including North American, Mutual of Omaha, Global Atlantic, and more.</p>
           <div class="int-grid">
-            <div class="int-tile"><strong>Best-in-Class Technology</strong><span>Industry-leading quoting, enrollment &amp; client management tools selected by HGI</span></div>
+            <div class="int-tile"><strong>Best-in-Class Technology</strong><span>Industry-leading quoting, enrollment &amp; client management tools</span></div>
             <div class="int-tile"><strong>A-Rated Fortune 50 Carriers</strong><span>Access to the nation's top-rated life, annuity &amp; LTC carriers</span></div>
             <div class="int-tile"><strong>11M+ Customers Protected</strong><span>Integrity's national network safeguards millions of American families</span></div>
             <div class="int-tile"><strong>Licensed in All 50 States</strong><span>Through Hegemon Financial Group LLC — serving clients coast to coast</span></div>
@@ -381,7 +329,6 @@ footer a{color:#c9a227;text-decoration:none}
   </div>
 </section>
 
-
 <!-- WHY -->
 <section id="why" class="why-bg">
   <div class="sec-inner">
@@ -389,36 +336,12 @@ footer a{color:#c9a227;text-decoration:none}
     <h2 class="sec-title">Why Families Choose Us</h2>
     <p class="sec-sub">We don't chase returns — we build certainty. Here's what sets us apart.</p>
     <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🏆</div>
-        <h4>Fortune 50 Carrier Partners</h4>
-        <p>We work with the nation's top-rated insurance and financial companies — North American, Mutual of Omaha, Global Atlantic — to bring you best-in-class products.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">👨‍👩‍👧‍👦</div>
-        <h4>400+ Families Served</h4>
-        <p>Our team has guided over 400 families with customized financial strategies tailored to each unique stage of life — from young families to retirees.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">💡</div>
-        <h4>Tax-Efficient Strategies</h4>
-        <p>We specialize in minimizing your tax burden through smart withdrawal planning, Roth conversions, and IUL cash value strategies that keep more in your pocket.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🗺️</div>
-        <h4>Holistic Financial Planning</h4>
-        <p>From protection and debt management to retirement and college planning, we address your complete financial picture — not just one piece of the puzzle.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🆓</div>
-        <h4>No-Cost Consultations</h4>
-        <p>Every family deserves a financial roadmap. We offer complimentary reviews to help you understand where you stand today and where you can go tomorrow.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌎</div>
-        <h4>Nationwide Coverage</h4>
-        <p>Licensed across all 50 states through Hegemon Financial Group, backed by Integrity Marketing Group — wherever you are, we can help.</p>
-      </div>
+      <div class="why-card"><div class="why-icon">🏆</div><h4>Fortune 50 Carrier Partners</h4><p>We work with the nation's top-rated insurance and financial companies — North American, Mutual of Omaha, Global Atlantic — to bring you best-in-class products.</p></div>
+      <div class="why-card"><div class="why-icon">👨‍👩‍👧‍👦</div><h4>400+ Families Served</h4><p>Our team has guided over 400 families with customized financial strategies tailored to each unique stage of life — from young families to retirees.</p></div>
+      <div class="why-card"><div class="why-icon">💡</div><h4>Tax-Efficient Strategies</h4><p>We specialize in minimizing your tax burden through smart withdrawal planning, Roth conversions, and IUL cash value strategies that keep more in your pocket.</p></div>
+      <div class="why-card"><div class="why-icon">🗺️</div><h4>Holistic Financial Planning</h4><p>From protection and debt management to retirement and college planning, we address your complete financial picture — not just one piece of the puzzle.</p></div>
+      <div class="why-card"><div class="why-icon">🆓</div><h4>No-Cost Consultations</h4><p>Every family deserves a financial roadmap. We offer complimentary reviews to help you understand where you stand today and where you can go tomorrow.</p></div>
+      <div class="why-card"><div class="why-icon">🌎</div><h4>Nationwide Coverage</h4><p>Licensed across all 50 states through Hegemon Financial Group, backed by Integrity Marketing Group — wherever you are, we can help.</p></div>
     </div>
   </div>
 </section>
@@ -439,10 +362,7 @@ footer a{color:#c9a227;text-decoration:none}
           <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
           <span>7700 Preston Rd, Frisco, TX 75034<br/>McKinney, TX · Serving clients nationwide</span>
         </div>
-        <div class="c-row">
-          <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8h12v8H3a1 1 0 01-1-1V9a1 1 0 011-1z"/></svg></div>
-          <span>Zoom Meeting: <a href="https://us06web.zoom.us/j/8349158830" target="_blank">us06web.zoom.us/j/8349158830</a></span>
-        </div>
+
       </div>
       <div class="soc-row">
         <a href="https://www.facebook.com/p/SafeInvest-Financials-61584564256822/" target="_blank" class="soc-btn soc-fb">
@@ -499,12 +419,15 @@ footer a{color:#c9a227;text-decoration:none}
         </div>
       </div>
       <div class="fg"><label>Your Goals (optional)</label><textarea id="msg" placeholder="e.g. I want to protect my family and retire tax-free by 60..."></textarea></div>
-      <button class="submit-btn" onclick="doSubmit()">Schedule My Free Consultation →</button>
+      <button class="submit-btn" id="sub-btn" onclick="doSubmit()">Schedule My Free Consultation →</button>
       <div id="success-msg">
         <div style="font-size:22px;margin-bottom:6px">✅</div>
-        <div style="font-weight:700;color:#276749;font-size:14px;margin-bottom:4px">Request Sent via SMS!</div>
-        <div style="font-size:12.5px;color:#2f855a;margin-bottom:10px">Lalita will confirm your appointment shortly. Add the meeting to your calendar below.</div>
-        <button onclick="downloadICS()" style="background:#1a2744;color:#fff;border:none;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Open Sans',sans-serif">📅 Add to My Calendar (.ics)</button>
+        <div style="font-weight:700;color:#276749;font-size:14px;margin-bottom:4px">Request Sent!</div>
+        <div style="font-size:12.5px;color:#2f855a;margin-bottom:12px">Lalita will confirm your appointment shortly.<br/>Add this meeting to your calendar:</div>
+        <div class="cal-btns">
+          <button class="cal-btn cal-ics" onclick="downloadICS()">📅 Download .ics (Apple / Outlook)</button>
+          <button class="cal-btn cal-google" onclick="openGoogleCal()">📆 Add to Google Calendar</button>
+        </div>
       </div>
       <div class="form-note">🔒 Confidential · Meeting via Zoom · CST timezone</div>
     </div>
@@ -524,30 +447,18 @@ footer a{color:#c9a227;text-decoration:none}
 </footer>
 
 <script>
-let pendingDay='',pendingTime='',pendingName='';
-function doSubmit(){
-  const fn=document.getElementById('fn').value.trim();
-  const ln=document.getElementById('ln').value.trim();
-  const em=document.getElementById('em').value.trim();
-  const ph=document.getElementById('ph').value.trim();
-  const svc=document.getElementById('svc').value;
-  const day=document.getElementById('day').value;
-  const time=document.getElementById('time').value;
-  const msg=document.getElementById('msg').value.trim();
-  const btn=document.querySelector('.submit-btn');
-  if(!fn||!em){
-    btn.textContent='⚠ Please fill in Name & Email';
-    btn.style.background='#c53030';
-    setTimeout(()=>{btn.textContent='Schedule My Free Consultation →';btn.style.background='';},2500);
-    return;
-  }
-  pendingDay=day||'TBD'; pendingTime=time||'TBD'; pendingName=fn+' '+ln;
-  const smsText=`Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
-  btn.style.display='none';
-  document.getElementById('success-msg').style.display='block';
-  window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank');
+function toggleMenu(){
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mob-menu').classList.toggle('open');
 }
-function downloadICS(){
+function closeMenu(){
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mob-menu').classList.remove('open');
+}
+
+let pendingDay='',pendingTime='',pendingName='',pendingEmail='',pendingDate=null;
+
+function buildDate(){
   const days={Monday:1,Tuesday:2,Wednesday:3,Thursday:4,Friday:5,Saturday:6,Sunday:0};
   let s=new Date();
   if(pendingDay!=='TBD'&&days[pendingDay]!==undefined){
@@ -557,18 +468,66 @@ function downloadICS(){
   let h=10,m=0;
   if(pendingTime!=='TBD'){
     const mx=pendingTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
-    if(mx){h=parseInt(mx[1]);m=parseInt(mx[2]);if(mx[3].toUpperCase()==='PM'&&h!==12)h+=12;if(mx[3].toUpperCase()==='AM'&&h===12)h=0;h+=6;}
+    if(mx){
+      h=parseInt(mx[1]);m=parseInt(mx[2]);
+      if(mx[3].toUpperCase()==='PM'&&h!==12)h+=12;
+      if(mx[3].toUpperCase()==='AM'&&h===12)h=0;
+      h+=6; // CST to UTC
+    }
   }
   s.setHours(h,m,0,0);
+  return s;
+}
+
+function doSubmit(){
+  const fn=document.getElementById('fn').value.trim();
+  const ln=document.getElementById('ln').value.trim();
+  const em=document.getElementById('em').value.trim();
+  const ph=document.getElementById('ph').value.trim();
+  const svc=document.getElementById('svc').value;
+  const day=document.getElementById('day').value;
+  const time=document.getElementById('time').value;
+  const msg=document.getElementById('msg').value.trim();
+  const btn=document.getElementById('sub-btn');
+  if(!fn||!em){
+    btn.textContent='⚠ Please fill in Name & Email';
+    btn.style.background='#c53030';
+    setTimeout(()=>{btn.textContent='Schedule My Free Consultation →';btn.style.background='';},2500);
+    return;
+  }
+  pendingDay=day||'TBD';
+  pendingTime=time||'TBD';
+  pendingName=fn+' '+ln;
+  pendingEmail=em;
+  pendingDate=buildDate();
+  const smsText=`Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
+  btn.style.display='none';
+  document.getElementById('success-msg').style.display='block';
+  window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank');
+}
+
+function downloadICS(){
+  const s=pendingDate||new Date();
   const e=new Date(s.getTime()+3600000);
   const f=d=>{const p=n=>String(n).padStart(2,'0');return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+'T'+p(d.getUTCHours())+p(d.getUTCMinutes())+'00Z';};
   const ics=`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//SafeInvest Financials//EN\r\nBEGIN:VEVENT\r\nUID:safeinvest-${Date.now()}@safeinvestfinancials.com\r\nDTSTAMP:${f(new Date())}\r\nDTSTART:${f(s)}\r\nDTEND:${f(e)}\r\nSUMMARY:Free Financial Consultation – Lalita Kumar\r\nDESCRIPTION:Your free consultation with Lalita Kumar\\, SafeInvest Financials.\\n\\nJoin Zoom:\\nhttps://us06web.zoom.us/j/8349158830\\n\\nDay: ${pendingDay}\\nTime: ${pendingTime} CST\r\nLOCATION:Zoom – https://us06web.zoom.us/j/8349158830\r\nURL:https://us06web.zoom.us/j/8349158830\r\nORGANIZER;CN=Lalita Kumar:mailto:safeinvestfinancials@gmail.com\r\nSTATUS:TENTATIVE\r\nSEQUENCE:0\r\nEND:VEVENT\r\nEND:VCALENDAR`;
   const b=new Blob([ics],{type:'text/calendar;charset=utf-8'});
   const u=URL.createObjectURL(b);
   const a=document.createElement('a');
-  a.href=u;a.download='SafeInvest-Consultation.ics';
-  document.body.appendChild(a);a.click();
-  document.body.removeChild(a);URL.revokeObjectURL(u);
+  a.href=u; a.download='SafeInvest-Consultation.ics';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(u);
+}
+
+function openGoogleCal(){
+  const s=pendingDate||new Date();
+  const e=new Date(s.getTime()+3600000);
+  const fmt=d=>{const p=n=>String(n).padStart(2,'0');return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+'T'+p(d.getUTCHours())+p(d.getUTCMinutes())+'00Z';};
+  const title=encodeURIComponent('Free Financial Consultation – Lalita Kumar');
+  const details=encodeURIComponent('Join Zoom: https://us06web.zoom.us/j/8349158830\n\nYour free consultation with Lalita Kumar, SafeInvest Financials.');
+  const location=encodeURIComponent('Zoom: https://us06web.zoom.us/j/8349158830');
+  const url=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(s)}/${fmt(e)}&details=${details}&location=${location}`;
+  window.open(url,'_blank');
 }
 </script>
 </body>

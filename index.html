@@ -13,11 +13,8 @@ body{font-family:'Open Sans',sans-serif;color:#1a2744;background:#fff}
 /* NAV */
 nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px;max-width:1200px;margin:0 auto;padding:0 4%}
-.nav-logo{display:flex;align-items:center;gap:10px;background:#1a2744;padding:6px 14px;border-radius:8px}
-.nav-logo img{height:48px;display:block}
-.nav-logo-text{display:flex;flex-direction:column}
-.nav-logo-text span:first-child{font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:#fff;line-height:1.1}
-.nav-logo-text span:last-child{font-size:8px;letter-spacing:2.5px;color:#c9a227;text-transform:uppercase;font-weight:600}
+.nav-logo{display:flex;align-items:center;padding:4px;border-radius:10px;background:transparent}
+.nav-logo img{height:58px;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.15))}
 .nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{text-decoration:none;color:#1a2744;font-size:13px;font-weight:600;letter-spacing:.3px;transition:color .2s}
 .nav-links a:hover{color:#c9a227}
@@ -200,10 +197,6 @@ footer a{color:#c9a227;text-decoration:none}
     <div class="nav-logo">
       <img src="logo.png" alt="SafeInvest Financials logo"
         onerror="this.style.display='none'"/>
-      <div class="nav-logo-text">
-        <span>SafeInvest</span>
-        <span>Financials</span>
-      </div>
     </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Financial Insights | SafeInvest Financials</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;color:#1a2744;background:#fff}
+
+nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:124px;max-width:1200px;margin:0 auto;padding:0 4%}
+.nav-logo{display:flex;align-items:center;padding:4px;border-radius:10px}
+.nav-logo img{height:116px;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.15))}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{text-decoration:none;color:#1a2744;font-size:13px;font-weight:600;letter-spacing:.3px;transition:color .2s}
+.nav-links a:hover{color:#c9a227}
+.nav-cta{background:#1a2744;color:#fff!important;padding:9px 18px;border-radius:4px}
+.nav-cta:hover{background:#c9a227!important}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:24px;height:2px;background:#1a2744;border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;background:#fff;border-top:1px solid #e2e8f0;padding:16px 4%;flex-direction:column;gap:0}
+.mobile-menu a{display:block;padding:12px 0;color:#1a2744;text-decoration:none;font-size:14px;font-weight:600;border-bottom:1px solid #f0f4f8}
+.mobile-menu a:last-child{border-bottom:none;margin-top:8px;background:#1a2744;color:#fff;text-align:center;padding:12px;border-radius:6px}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#0a1628 0%,#1a2f5e 55%,#0d1e3a 100%);color:#fff;padding:60px 4% 50px}
+.page-hero-inner{max-width:1200px;margin:0 auto}
+.page-tag{display:inline-block;background:rgba(201,162,39,.18);color:#f0c84a;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;border:1px solid rgba(201,162,39,.3)}
+.page-hero h1{font-family:'Merriweather',serif;font-size:36px;font-weight:700;margin-bottom:12px}
+.page-hero h1 span{color:#c9a227}
+.page-hero p{font-size:15px;opacity:.85;max-width:580px;line-height:1.8}
+
+/* SEARCH + FILTER */
+.filter-bar{background:#f7f8fc;border-bottom:1px solid #e2e8f0;padding:20px 4%}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.search-box{flex:1;min-width:200px;position:relative}
+.search-box input{width:100%;padding:10px 14px 10px 38px;border:1px solid #d1d9e6;border-radius:6px;font-size:13.5px;font-family:'Open Sans',sans-serif;color:#1a2744;outline:none;transition:border .2s;background:#fff}
+.search-box input:focus{border-color:#c9a227}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;font-size:14px}
+.filter-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag-btn{padding:8px 16px;border-radius:20px;border:1px solid #d1d9e6;background:#fff;font-size:12px;font-weight:600;color:#4a5568;cursor:pointer;transition:all .2s;font-family:'Open Sans',sans-serif}
+.tag-btn:hover,.tag-btn.active{background:#1a2744;color:#fff;border-color:#1a2744}
+.tag-btn.active{background:#c9a227;border-color:#c9a227}
+
+/* ARTICLES GRID */
+.articles-section{padding:60px 4%}
+.articles-inner{max-width:1200px;margin:0 auto}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.article-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+.article-card:hover{border-color:#c9a227;box-shadow:0 8px 28px rgba(26,39,68,.1);transform:translateY(-3px)}
+.article-thumb{height:180px;background:linear-gradient(135deg,#1a2744,#1a3a6e);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+.article-thumb img{width:100%;height:100%;object-fit:cover}
+.article-cat{position:absolute;top:12px;left:12px;background:#c9a227;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.article-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.article-meta{display:flex;gap:12px;font-size:11px;color:#9ca3af;margin-bottom:10px;align-items:center}
+.article-dot{width:3px;height:3px;border-radius:50%;background:#d1d9e6}
+.article-card h3{font-family:'Merriweather',serif;font-size:16px;color:#1a2744;margin-bottom:8px;line-height:1.4;font-weight:700}
+.article-card p{font-size:13px;color:#4a5568;line-height:1.7;flex:1}
+.article-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid #f0f4f8}
+.article-author{display:flex;align-items:center;gap:8px;font-size:12px;color:#4a5568;font-weight:600}
+.author-avatar{width:28px;height:28px;border-radius:50%;border:2px solid #c9a227;overflow:hidden;background:#1a2744;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#c9a227}
+.author-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+.read-more{font-size:12px;font-weight:700;color:#c9a227;text-decoration:none;display:flex;align-items:center;gap:4px;transition:gap .2s}
+.read-more:hover{gap:8px}
+
+/* FEATURED ARTICLE */
+.featured-card{grid-column:1/-1;display:grid;grid-template-columns:420px 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;transition:all .25s}
+.featured-card:hover{border-color:#c9a227;box-shadow:0 8px 28px rgba(26,39,68,.1)}
+.featured-thumb{background:linear-gradient(135deg,#0a1628,#1a3060);display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;min-height:260px}
+.featured-thumb img{width:100%;height:100%;object-fit:cover}
+.featured-badge{position:absolute;top:16px;left:16px;background:#c9a227;color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.5px}
+.featured-body{padding:28px 28px 24px;display:flex;flex-direction:column;justify-content:center}
+.featured-cat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:10px}
+.featured-body h3{font-family:'Merriweather',serif;font-size:22px;color:#1a2744;margin-bottom:10px;line-height:1.35;font-weight:700}
+.featured-body p{font-size:14px;color:#4a5568;line-height:1.8;margin-bottom:16px}
+.featured-body .article-meta{margin-bottom:16px}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:60px 20px;color:#9ca3af;grid-column:1/-1}
+.empty-state div{font-size:48px;margin-bottom:12px}
+.empty-state p{font-size:14px}
+
+/* NEWSLETTER */
+.newsletter{background:linear-gradient(135deg,#0a1628,#1a2f5e);padding:60px 4%;color:#fff;text-align:center}
+.newsletter h2{font-family:'Merriweather',serif;font-size:28px;margin-bottom:10px}
+.newsletter p{font-size:15px;opacity:.8;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
+.newsletter-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.newsletter-form input{flex:1;min-width:200px;padding:12px 16px;border-radius:6px;border:none;font-size:14px;font-family:'Open Sans',sans-serif;outline:none}
+.newsletter-form button{background:#c9a227;color:#fff;border:none;padding:12px 22px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Open Sans',sans-serif;transition:background .2s;white-space:nowrap}
+.newsletter-form button:hover{background:#a8861e}
+
+footer{background:#060d1a;color:rgba(255,255,255,.5);text-align:center;padding:28px 4%;font-size:12px;line-height:1.8}
+footer strong{color:#c9a227}
+footer a{color:#c9a227;text-decoration:none}
+.footer-disc{font-size:11px;opacity:.55;margin-top:10px;max-width:900px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+@media(max-width:900px){
+  .hamburger{display:flex}
+  .nav-links{display:none}
+  .featured-card{grid-template-columns:1fr}
+  .featured-thumb{min-height:200px}
+  .articles-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-inner{height:90px}
+  .nav-logo img{height:80px}
+}
+@media(max-width:560px){
+  .articles-grid{grid-template-columns:1fr}
+  .page-hero h1{font-size:26px}
+  .newsletter-form{flex-direction:column}
+  .newsletter-form input,.newsletter-form button{width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="logo.png" alt="SafeInvest Financials" onerror="this.style.display='none'"/>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#why">Why Us</a></li>
+      <li><a href="articles.html" style="color:#c9a227">Articles</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Free Consultation</a></li>
+    </ul>
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="index.html#services" onclick="closeMenu()">Services</a>
+    <a href="index.html#why" onclick="closeMenu()">Why Us</a>
+    <a href="articles.html" onclick="closeMenu()">Articles</a>
+    <a href="index.html#contact" onclick="closeMenu()">Free Consultation →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-tag">Financial Education · Insights · Tips</div>
+    <h1>Knowledge Is Your <span>Greatest Asset</span></h1>
+    <p>Plain-English articles on life insurance, retirement planning, tax strategies, and building generational wealth — written for real families, not finance experts.</p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Search articles..." oninput="filterArticles()"/>
+    </div>
+    <div class="filter-tags">
+      <button class="tag-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="tag-btn" onclick="setFilter('retirement',this)">Retirement</button>
+      <button class="tag-btn" onclick="setFilter('insurance',this)">Insurance</button>
+      <button class="tag-btn" onclick="setFilter('tax',this)">Tax Strategy</button>
+      <button class="tag-btn" onclick="setFilter('education',this)">Education</button>
+      <button class="tag-btn" onclick="setFilter('estate',this)">Estate</button>
+    </div>
+  </div>
+</div>
+
+<section class="articles-section">
+  <div class="articles-inner">
+    <div class="articles-grid" id="articles-grid">
+
+      <!-- FEATURED -->
+      <div class="featured-card article-item" data-cat="retirement" data-title="the truth about your 401k what they don't tell you">
+        <div class="featured-thumb">💼
+          <div class="featured-badge">⭐ Featured Article</div>
+        </div>
+        <div class="featured-body">
+          <div class="featured-cat">Retirement Planning</div>
+          <h3>The Truth About Your 401(k): What They Don't Tell You</h3>
+          <div class="article-meta">
+            <span>Lalita Kumar</span><div class="article-dot"></div>
+            <span>5 min read</span><div class="article-dot"></div>
+            <span>April 2025</span>
+          </div>
+          <p>Your 401(k) is growing — but did you know every dollar in it is pre-taxed? When you retire and withdraw, the IRS takes their cut. Discover why tax-free alternatives like IUL might keep significantly more money in your pocket over a lifetime.</p>
+          <a href="articles/the-truth-about-401k.html" class="read-more">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 -->
+      <div class="article-card article-item" data-cat="insurance" data-title="term vs whole life insurance which is right for your family">
+        <div class="article-thumb">🛡️
+          <div class="article-cat">Insurance</div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta"><span>Lalita Kumar</span><div class="article-dot"></div><span>4 min read</span><div class="article-dot"></div><span>March 2025</span></div>
+          <h3>Term vs. Whole Life Insurance: Which Is Right for Your Family?</h3>
+          <p>The debate everyone has but few understand clearly. We break it down in plain English so you can make the right choice for your family's specific situation.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="author-avatar"><img src="lalita.jpg" alt="LK" onerror="this.outerHTML='LK'"/></div>
+              Lalita Kumar
+            </div>
+            <a href="articles/term-vs-whole-life.html" class="read-more">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 3 -->
+      <div class="article-card article-item" data-cat="tax" data-title="5 legal ways to pay zero taxes in retirement">
+        <div class="article-thumb">💰
+          <div class="article-cat">Tax Strategy</div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta"><span>Lalita Kumar</span><div class="article-dot"></div><span>6 min read</span><div class="article-dot"></div><span>March 2025</span></div>
+          <h3>5 Legal Ways to Pay Zero Taxes in Retirement</h3>
+          <p>Most retirees are shocked by their tax bill. But with the right strategy put in place today, you could legally reduce — or eliminate — your retirement tax burden entirely.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="author-avatar"><img src="lalita.jpg" alt="LK" onerror="this.outerHTML='LK'"/></div>
+              Lalita Kumar
+            </div>
+            <a href="articles/zero-taxes-retirement.html" class="read-more">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 4 -->
+      <div class="article-card article-item" data-cat="education" data-title="how to fund your child's college without raiding your retirement">
+        <div class="article-thumb">🎓
+          <div class="article-cat">Education</div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta"><span>Lalita Kumar</span><div class="article-dot"></div><span>4 min read</span><div class="article-dot"></div><span>February 2025</span></div>
+          <h3>How to Fund Your Child's College Without Raiding Your Retirement</h3>
+          <p>College costs rise 6% every year. Here's how smart families separate education savings from retirement funds — and protect both from market losses.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="author-avatar"><img src="lalita.jpg" alt="LK" onerror="this.outerHTML='LK'"/></div>
+              Lalita Kumar
+            </div>
+            <a href="articles/fund-college-not-retirement.html" class="read-more">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 5 -->
+      <div class="article-card article-item" data-cat="estate" data-title="what happens to your money when you die without a plan">
+        <div class="article-thumb">📜
+          <div class="article-cat">Estate Planning</div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta"><span>Lalita Kumar</span><div class="article-dot"></div><span>5 min read</span><div class="article-dot"></div><span>February 2025</span></div>
+          <h3>What Happens to Your Money When You Die Without a Plan?</h3>
+          <p>Probate court. Estate taxes. Family disputes. Without proper planning, the wealth you spent a lifetime building could disappear in months. Here's how to prevent it.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="author-avatar"><img src="lalita.jpg" alt="LK" onerror="this.outerHTML='LK'"/></div>
+              Lalita Kumar
+            </div>
+            <a href="articles/no-estate-plan.html" class="read-more">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLE 6 -->
+      <div class="article-card article-item" data-cat="retirement" data-title="what is an indexed universal life insurance iul and why should i care">
+        <div class="article-thumb">📈
+          <div class="article-cat">Retirement</div>
+        </div>
+        <div class="article-body">
+          <div class="article-meta"><span>Lalita Kumar</span><div class="article-dot"></div><span>5 min read</span><div class="article-dot"></div><span>January 2025</span></div>
+          <h3>What Is an IUL and Why Should I Care?</h3>
+          <p>Indexed Universal Life is one of the most misunderstood financial tools available. In plain English — here's what it is, how it works, and who it's right for.</p>
+          <div class="article-footer">
+            <div class="article-author">
+              <div class="author-avatar"><img src="lalita.jpg" alt="LK" onerror="this.outerHTML='LK'"/></div>
+              Lalita Kumar
+            </div>
+            <a href="articles/what-is-iul.html" class="read-more">Read →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-state" id="empty-state" style="display:none">
+        <div>🔍</div>
+        <p>No articles found. Try a different search or category.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <h2>Get New Articles in Your Inbox</h2>
+  <p>Plain-English financial tips delivered monthly. No spam — just insights that could save or make you thousands.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="your@email.com"/>
+    <button onclick="subscribeNewsletter()">Subscribe Free</button>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <strong>SafeInvest Financials</strong> · Lalita Kumar · Regional Marketing Director<br/>
+    7700 Preston Rd, Frisco, TX 75034 · McKinney, TX ·
+    <a href="mailto:safeinvestfinancials@gmail.com">safeinvestfinancials@gmail.com</a> ·
+    <a href="index.html">Home</a> ·
+    <a href="https://www.facebook.com/p/SafeInvest-Financials-61584564256822/" target="_blank">Facebook</a>
+  </div>
+  <div>A practice of Hegemon Group International (HGI) · Powered by <strong>Integrity Marketing Group</strong></div>
+  <div class="footer-disc">SafeInvest Financials is a marketing name used by Lalita Kumar, a licensed insurance professional. This site is for informational purposes only and does not constitute financial, tax, or legal advice.</div>
+</footer>
+
+<script>
+let activeFilter='all';
+function toggleMenu(){document.getElementById('ham').classList.toggle('open');document.getElementById('mob-menu').classList.toggle('open');}
+function closeMenu(){document.getElementById('ham').classList.remove('open');document.getElementById('mob-menu').classList.remove('open');}
+function setFilter(cat,btn){
+  activeFilter=cat;
+  document.querySelectorAll('.tag-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterArticles();
+}
+function filterArticles(){
+  const q=document.getElementById('search-input').value.toLowerCase();
+  const items=document.querySelectorAll('.article-item');
+  let visible=0;
+  items.forEach(el=>{
+    const cat=el.dataset.cat;
+    const title=el.dataset.title;
+    const matchCat=activeFilter==='all'||cat===activeFilter;
+    const matchSearch=!q||title.includes(q);
+    const show=matchCat&&matchSearch;
+    el.style.display=show?'':'none';
+    if(show)visible++;
+  });
+  document.getElementById('empty-state').style.display=visible===0?'grid':'none';
+}
+function subscribeNewsletter(){
+  const btn=document.querySelector('.newsletter-form button');
+  btn.textContent='✓ Subscribed!';
+  btn.style.background='#276749';
+  setTimeout(()=>{btn.textContent='Subscribe Free';btn.style.background='';},3000);
+}
+</script>
+</body>
+</html>

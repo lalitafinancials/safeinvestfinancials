@@ -578,7 +578,13 @@ function buildDate(){
   s.setHours(h,m,0,0); return s;
 }
 
-function doSubmit(){
+// ⚙️ REPLACE THIS with your actual Google Apps Script Web App URL
+// After deploying, it looks like: https://script.google.com/macros/s/YOUR_ID_HERE/exec
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVCSYqqlm73Ezr7V6Rl6sb3yOEsw1E7xY1HW4dfEO_2enZLDQFAV1JMeHgqBWfZ4r98A/exec';
+
+const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+async function doSubmit(){
   const fn=document.getElementById('fn').value.trim();
   const ln=document.getElementById('ln').value.trim();
   const em=document.getElementById('em').value.trim();
@@ -588,13 +594,51 @@ function doSubmit(){
   const time=document.getElementById('time').value;
   const msg=document.getElementById('msg').value.trim();
   const btn=document.getElementById('sub-btn');
-  if(!fn||!em){btn.textContent='⚠ Please fill in Name & Email';btn.style.background='#c53030';setTimeout(()=>{btn.textContent='Schedule My Free Consultation →';btn.style.background='';},2500);return;}
-  pendingDay=day||'TBD'; pendingTime=time||'TBD'; pendingName=fn+' '+ln;
+
+  if(!fn||!em){
+    btn.textContent='⚠ Please fill in Name & Email';
+    btn.style.background='#c53030';
+    btn.style.color='#fff';
+    setTimeout(()=>{btn.textContent='Schedule My Free Consultation →';btn.style.background='';btn.style.color='';},2500);
+    return;
+  }
+
+  pendingDay=day||'TBD';
+  pendingTime=time||'TBD';
+  pendingName=fn+' '+ln;
   pendingDate=buildDate();
-  const smsText=`Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
+
+  const payload={
+    firstName:fn, lastName:ln, email:em, phone:ph,
+    service:svc||'General Inquiry', day:pendingDay,
+    time:pendingTime, goals:msg,
+    source: isMobile ? 'Mobile' : 'Desktop'
+  };
+
+  // ── ALWAYS: Send to Google Apps Script (log + email) ──
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  try {
+    await fetch(SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+  } catch(err){
+    console.log('Script error (may still have worked):', err);
+  }
+
+  // ── MOBILE: Also open SMS ──
+  if(isMobile){
+    const smsText=`Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
+    window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank');
+  }
+
+  // ── SHOW SUCCESS ──
   btn.style.display='none';
   document.getElementById('success-msg').style.display='block';
-  window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank');
 }
 
 function downloadICS(){

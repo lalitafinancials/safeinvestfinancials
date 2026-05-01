@@ -578,22 +578,19 @@ function buildDate(){
   s.setHours(h,m,0,0); return s;
 }
 
-// ⚙️ REPLACE THIS with your actual Google Apps Script Web App URL
-// After deploying, it looks like: https://script.google.com/macros/s/YOUR_ID_HERE/exec
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVCSYqqlm73Ezr7V6Rl6sb3yOEsw1E7xY1HW4dfEO_2enZLDQFAV1JMeHgqBWfZ4r98A/exec';
-
 const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 async function doSubmit(){
-  const fn=document.getElementById('fn').value.trim();
-  const ln=document.getElementById('ln').value.trim();
-  const em=document.getElementById('em').value.trim();
-  const ph=document.getElementById('ph').value.trim();
-  const svc=document.getElementById('svc').value;
-  const day=document.getElementById('day').value;
-  const time=document.getElementById('time').value;
-  const msg=document.getElementById('msg').value.trim();
-  const btn=document.getElementById('sub-btn');
+  const fn  = document.getElementById('fn').value.trim();
+  const ln  = document.getElementById('ln').value.trim();
+  const em  = document.getElementById('em').value.trim();
+  const ph  = document.getElementById('ph').value.trim();
+  const svc = document.getElementById('svc').value;
+  const day = document.getElementById('day').value;
+  const time= document.getElementById('time').value;
+  const msg = document.getElementById('msg').value.trim();
+  const btn = document.getElementById('sub-btn');
 
   if(!fn||!em){
     btn.textContent='⚠ Please fill in Name & Email';
@@ -603,42 +600,58 @@ async function doSubmit(){
     return;
   }
 
-  pendingDay=day||'TBD';
-  pendingTime=time||'TBD';
-  pendingName=fn+' '+ln;
-  pendingDate=buildDate();
+  pendingDay  = day||'TBD';
+  pendingTime = time||'TBD';
+  pendingName = fn+' '+ln;
+  pendingDate = buildDate();
 
-  const payload={
-    firstName:fn, lastName:ln, email:em, phone:ph,
-    service:svc||'General Inquiry', day:pendingDay,
-    time:pendingTime, goals:msg,
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  // ── Submit via hidden iframe (bypasses CORS) ──────────────
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = SCRIPT_URL;
+  form.target = 'hidden_iframe';
+
+  const fields = {
+    firstName: fn, lastName: ln, email: em, phone: ph,
+    service: svc||'General Inquiry', day: pendingDay,
+    time: pendingTime, goals: msg,
     source: isMobile ? 'Mobile' : 'Desktop'
   };
 
-  // ── ALWAYS: Send to Google Apps Script (log + email) ──
-  btn.textContent='Sending...';
-  btn.disabled=true;
+  Object.keys(fields).forEach(key => {
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = key;
+    input.value = fields[key];
+    form.appendChild(input);
+  });
 
-  try {
-    await fetch(SCRIPT_URL,{
-      method:'POST',
-      mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
-    });
-  } catch(err){
-    console.log('Script error (may still have worked):', err);
+  // Create hidden iframe to catch response
+  let iframe = document.getElementById('hidden_iframe');
+  if(!iframe){
+    iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.id   = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
   }
 
-  // ── MOBILE: Also open SMS ──
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+  // ── Mobile: open SMS ──────────────────────────────────────
   if(isMobile){
-    const smsText=`Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
-    window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank');
+    const smsText = `Hi Lalita! I'd like a free consultation.\n\nName: ${fn} ${ln}\nEmail: ${em}\nPhone: ${ph||'N/A'}\nService: ${svc||'General Inquiry'}\nDay: ${pendingDay}\nTime: ${pendingTime} CST\nGoals: ${msg||'N/A'}\n\nZoom: https://us06web.zoom.us/j/8349158830`;
+    setTimeout(()=>{ window.open('sms:+15122997636?body='+encodeURIComponent(smsText),'_blank'); }, 500);
   }
 
-  // ── SHOW SUCCESS ──
-  btn.style.display='none';
-  document.getElementById('success-msg').style.display='block';
+  // ── Show success ──────────────────────────────────────────
+  btn.style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
 }
 
 function downloadICS(){

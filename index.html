@@ -12,11 +12,11 @@ body{font-family:'Open Sans',sans-serif;color:#1a2744;background:#fff}
 
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:80px;max-width:1200px;margin:0 auto;padding:0 4%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 4%}
 .nav-logo{display:flex;align-items:center;padding:4px}
-.nav-logo img{height:68px;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
+.nav-logo img{height:48px;display:block;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
 .nav-links{display:flex;gap:16px;list-style:none;align-items:center}
-.nav-links a{text-decoration:none;color:#1a2744;font-size:12.5px;font-weight:600;white-space:nowrap;transition:color .2s}
+.nav-links a{text-decoration:none;color:#1a2744;font-size:13px;font-weight:600;white-space:nowrap;transition:color .2s}
 .nav-links a:hover{color:#c9a227}
 .nav-cta{background:#1a2744;color:#fff!important;padding:8px 16px;border-radius:4px}
 .nav-cta:hover{background:#c9a227!important}
@@ -116,19 +116,19 @@ section{padding:76px 4%}
 .dtsly-cta p{font-size:14px;opacity:.85;margin-bottom:20px;line-height:1.7}
 
 /* ── PARTNERS TICKER ── */
-.partners-section{background:#fff;padding:50px 4%;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;overflow:hidden}
+.partners-section{background:#f7f8fc;padding:44px 4%;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;overflow:hidden}
 .partners-label{text-align:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:6px}
 .partners-title{text-align:center;font-family:'Merriweather',serif;font-size:22px;color:#1a2744;margin-bottom:28px;font-weight:700}
 .ticker-wrap{overflow:hidden;position:relative}
-.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.ticker-wrap::before{left:0;background:linear-gradient(to right,#fff,transparent)}
-.ticker-wrap::after{right:0;background:linear-gradient(to left,#fff,transparent)}
-.ticker-track{display:flex;gap:48px;align-items:center;animation:ticker 28s linear infinite;width:max-content}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(to right,#f7f8fc,transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(to left,#f7f8fc,transparent)}
+.ticker-track{display:flex;gap:16px;align-items:stretch;animation:ticker 36s linear infinite;width:max-content}
 .ticker-track:hover{animation-play-state:paused}
-.partner-item{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;min-width:140px}
-.partner-logo{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;background:#f7f8fc;border:1px solid #e2e8f0}
-.partner-name{font-size:12px;font-weight:700;color:#1a2744;text-align:center;letter-spacing:.3px}
-.partner-type{font-size:10px;color:#9ca3af;text-align:center}
+.partner-item{display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;width:160px;height:80px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:0 16px;transition:all .2s;cursor:default}
+.partner-item:hover{border-color:#c9a227;box-shadow:0 4px 16px rgba(26,39,68,.08)}
+.partner-name{font-size:13px;font-weight:700;color:#1a2744;text-align:center;line-height:1.3}
+.partner-type{font-size:10px;color:#9ca3af;text-align:center;margin-top:3px}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ── WHY ── */
@@ -369,104 +369,31 @@ footer a{color:#c9a227;text-decoration:none}
   <div class="ticker-wrap">
     <div class="ticker-track" id="ticker">
       <!-- SET 1 -->
-      <div class="partner-item">
-        <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Allianz_logo_blue_background.svg/200px-Allianz_logo_blue_background.svg.png" style="width:56px;height:56px;object-fit:contain;border-radius:8px" onerror="this.style.display='none';this.parentNode.innerHTML='🏦'"/></div>
-        <div class="partner-name">Allianz Life</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.mutualofomaha.com/content/dam/mutual-of-omaha/images/logos/mutual-of-omaha-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🛡️'"/></div>
-        <div class="partner-name">Mutual of Omaha</div><div class="partner-type">Life & LTC</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.northamericancompany.com/content/dam/north-american/images/logos/north-american-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🌿'"/></div>
-        <div class="partner-name">North American</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.nationwide.com/lc/resources/images/logos/nationwide_logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🏛️'"/></div>
-        <div class="partner-name">Nationwide Life</div><div class="partner-type">Life & Retirement</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.lfg.com/content/dam/lfg/images/logos/lincoln-financial-group-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🏆'"/></div>
-        <div class="partner-name">Lincoln Financial</div><div class="partner-type">Life & Retirement</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.athene.com/content/dam/athene/images/logos/athene-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='💡'"/></div>
-        <div class="partner-name">Athene Annuities</div><div class="partner-type">Retirement & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.fglife.com/content/dam/fg/images/logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='📊'"/></div>
-        <div class="partner-name">F&G Life</div><div class="partner-type">Annuity & Life</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.corebridgefinancial.com/content/dam/corebridge/images/logo/corebridge-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🌉'"/></div>
-        <div class="partner-name">Corebridge</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.ameritas.com/content/dam/ameritas/images/logos/ameritas-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🦁'"/></div>
-        <div class="partner-name">Ameritas</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.ethos.com/images/ethos-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🤝'"/></div>
-        <div class="partner-name">Ethos</div><div class="partner-type">Life Insurance</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.americanequity.com/images/logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🦅'"/></div>
-        <div class="partner-name">American Equity</div><div class="partner-type">Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc;font-size:11px;font-weight:700;color:#1a2744;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px">Agent<br/>Pipeline</div>
-        <div class="partner-name">Agent Pipeline</div><div class="partner-type">Licensed Health</div>
-      </div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#003781"/><text x="60" y="22" text-anchor="middle" fill="white" font-family="Arial" font-size="16" font-weight="bold">Allianz</text><circle cx="60" cy="38" r="7" fill="none" stroke="white" stroke-width="1.5"/><line x1="55" y1="38" x2="65" y2="38" stroke="white" stroke-width="1.5"/><line x1="60" y1="33" x2="60" y2="43" stroke="white" stroke-width="1.5"/></svg></div><div class="partner-name">Allianz Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="22" cy="26" r="14" fill="#003087"/><ellipse cx="22" cy="22" rx="6" ry="7" fill="#c8a97a"/><path d="M14,36 Q22,30 30,36" fill="#5c3d1e"/><text x="75" y="20" text-anchor="middle" fill="#003087" font-family="Arial" font-size="8" font-weight="bold">MUTUAL OF</text><text x="75" y="31" text-anchor="middle" fill="#003087" font-family="Arial" font-size="11" font-weight="bold">OMAHA</text><text x="75" y="43" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">INSURANCE COMPANY</text></svg></div><div class="partner-name">Mutual of Omaha</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><path d="M8,44 L8,8 L24,26 L40,8 L40,44" fill="none" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="24" cy="13" rx="7" ry="8" fill="none" stroke="#2d6a4f" stroke-width="1.5"/><text x="82" y="20" text-anchor="middle" fill="#1a2744" font-family="Arial" font-size="9" font-weight="bold">NORTH</text><text x="82" y="32" text-anchor="middle" fill="#1a2744" font-family="Arial" font-size="9" font-weight="bold">AMERICAN</text><text x="82" y="44" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">A Sammons Financial Co.</text></svg></div><div class="partner-name">North American</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><rect x="6" y="10" width="26" height="32" rx="3" fill="#003087"/><path d="M6,24 L32,14" stroke="white" stroke-width="1.5"/><path x1="6" y1="30" x2="32" y2="22" stroke="white" stroke-width="1.5"/><line x1="6" y1="30" x2="32" y2="22" stroke="white" stroke-width="1.5"/><text x="78" y="22" text-anchor="middle" fill="#003087" font-family="Arial" font-size="11" font-weight="bold">Nationwide</text><text x="78" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="8">is on your side</text></svg></div><div class="partner-name">Nationwide Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="20" cy="26" r="14" fill="#c8102e"/><ellipse cx="20" cy="21" rx="6" ry="7" fill="#f5d5b0"/><rect x="13" y="29" width="14" height="10" rx="2" fill="#1a1a2e"/><text x="75" y="20" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="10" font-weight="bold">Lincoln</text><text x="75" y="33" text-anchor="middle" fill="#c8102e" font-family="Arial" font-size="9" font-weight="bold">Financial</text><text x="75" y="45" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="7">GROUP</text></svg></div><div class="partner-name">Lincoln Financial</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><path d="M10,40 C10,40 20,8 30,8 C40,8 50,40 50,40" fill="none" stroke="#00a0d2" stroke-width="2.5"/><line x1="15" y1="28" x2="45" y2="28" stroke="#00a0d2" stroke-width="1.5"/><text x="85" y="24" text-anchor="middle" fill="#003057" font-family="Arial" font-size="14" font-weight="bold">ATHENE</text><text x="85" y="38" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">ANNUITIES</text></svg></div><div class="partner-name">Athene Annuities</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><rect x="6" y="8" width="36" height="36" rx="5" fill="#f5a623"/><text x="24" y="33" text-anchor="middle" fill="white" font-family="Arial" font-size="16" font-weight="bold">F&amp;G</text><text x="78" y="22" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="11" font-weight="bold">F&amp;G</text><text x="78" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">ANNUITIES &amp; LIFE</text></svg></div><div class="partner-name">F&G Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="14" cy="16" r="4" fill="#7b2d8b"/><circle cx="24" cy="16" r="4" fill="#7b2d8b" opacity=".6"/><circle cx="19" cy="25" r="4" fill="#7b2d8b" opacity=".4"/><text x="72" y="22" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="12" font-weight="bold">corebridge</text><text x="72" y="34" text-anchor="middle" fill="#7b2d8b" font-family="Arial" font-size="9">financial</text></svg></div><div class="partner-name">Corebridge</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="20" cy="26" r="13" fill="#c8102e"/><ellipse cx="20" cy="22" rx="5" ry="6" fill="#c8a97a"/><path d="M13,36 Q20,30 27,36" fill="#5c3d1e"/><text x="74" y="20" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="9" font-weight="bold">AMERICAN</font><text x="74" y="32" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="9" font-weight="bold">AMICABLE</text><text x="74" y="44" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="7">GROUP</text></svg></div><div class="partner-name">American Amicable</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="34" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="22" font-weight="bold" letter-spacing="2">ETHOS</text></svg></div><div class="partner-name">Ethos</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="20" text-anchor="middle" fill="#2563eb" font-family="Arial" font-size="13" font-weight="bold">Agent</text><text x="60" y="34" text-anchor="middle" fill="#16a34a" font-family="Arial" font-size="13" font-weight="bold">Pipeline</text><line x1="8" y1="39" x2="112" y2="39" stroke="#16a34a" stroke-width="1.5"/><text x="60" y="48" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">AN INTEGRITY COMPANY</text></svg></div><div class="partner-name">Agent Pipeline</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="22" text-anchor="middle" fill="#8b1a1a" font-family="Georgia" font-size="11" font-weight="bold">CalChoice</text><text x="60" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">INVESTMENTS INC</text></svg></div><div class="partner-name">CalChoice</div></div>
 
-      <!-- SET 2 — duplicate for seamless infinite loop -->
-      <div class="partner-item">
-        <div class="partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Allianz_logo_blue_background.svg/200px-Allianz_logo_blue_background.svg.png" style="width:56px;height:56px;object-fit:contain;border-radius:8px" onerror="this.style.display='none';this.parentNode.innerHTML='🏦'"/></div>
-        <div class="partner-name">Allianz Life</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.mutualofomaha.com/content/dam/mutual-of-omaha/images/logos/mutual-of-omaha-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🛡️'"/></div>
-        <div class="partner-name">Mutual of Omaha</div><div class="partner-type">Life & LTC</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.northamericancompany.com/content/dam/north-american/images/logos/north-american-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🌿'"/></div>
-        <div class="partner-name">North American</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.nationwide.com/lc/resources/images/logos/nationwide_logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🏛️'"/></div>
-        <div class="partner-name">Nationwide Life</div><div class="partner-type">Life & Retirement</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.lfg.com/content/dam/lfg/images/logos/lincoln-financial-group-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🏆'"/></div>
-        <div class="partner-name">Lincoln Financial</div><div class="partner-type">Life & Retirement</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.athene.com/content/dam/athene/images/logos/athene-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='💡'"/></div>
-        <div class="partner-name">Athene Annuities</div><div class="partner-type">Retirement & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.fglife.com/content/dam/fg/images/logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='📊'"/></div>
-        <div class="partner-name">F&G Life</div><div class="partner-type">Annuity & Life</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.corebridgefinancial.com/content/dam/corebridge/images/logo/corebridge-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🌉'"/></div>
-        <div class="partner-name">Corebridge</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.ameritas.com/content/dam/ameritas/images/logos/ameritas-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🦁'"/></div>
-        <div class="partner-name">Ameritas</div><div class="partner-type">Life & Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.ethos.com/images/ethos-logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🤝'"/></div>
-        <div class="partner-name">Ethos</div><div class="partner-type">Life Insurance</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc"><img src="https://www.americanequity.com/images/logo.png" style="width:100px;height:44px;object-fit:contain" onerror="this.style.display='none';this.parentNode.innerHTML='🦅'"/></div>
-        <div class="partner-name">American Equity</div><div class="partner-type">Annuity</div>
-      </div>
-      <div class="partner-item">
-        <div class="partner-logo" style="background:#f7f8fc;font-size:11px;font-weight:700;color:#1a2744;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px">Agent<br/>Pipeline</div>
-        <div class="partner-name">Agent Pipeline</div><div class="partner-type">Licensed Health</div>
-      </div>
+      <!-- SET 2 — duplicate for seamless loop -->
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#003781"/><text x="60" y="22" text-anchor="middle" fill="white" font-family="Arial" font-size="16" font-weight="bold">Allianz</text><circle cx="60" cy="38" r="7" fill="none" stroke="white" stroke-width="1.5"/><line x1="55" y1="38" x2="65" y2="38" stroke="white" stroke-width="1.5"/><line x1="60" y1="33" x2="60" y2="43" stroke="white" stroke-width="1.5"/></svg></div><div class="partner-name">Allianz Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="22" cy="26" r="14" fill="#003087"/><ellipse cx="22" cy="22" rx="6" ry="7" fill="#c8a97a"/><path d="M14,36 Q22,30 30,36" fill="#5c3d1e"/><text x="75" y="20" text-anchor="middle" fill="#003087" font-family="Arial" font-size="8" font-weight="bold">MUTUAL OF</text><text x="75" y="31" text-anchor="middle" fill="#003087" font-family="Arial" font-size="11" font-weight="bold">OMAHA</text><text x="75" y="43" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">INSURANCE COMPANY</text></svg></div><div class="partner-name">Mutual of Omaha</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><path d="M8,44 L8,8 L24,26 L40,8 L40,44" fill="none" stroke="#2d6a4f" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="24" cy="13" rx="7" ry="8" fill="none" stroke="#2d6a4f" stroke-width="1.5"/><text x="82" y="20" text-anchor="middle" fill="#1a2744" font-family="Arial" font-size="9" font-weight="bold">NORTH</text><text x="82" y="32" text-anchor="middle" fill="#1a2744" font-family="Arial" font-size="9" font-weight="bold">AMERICAN</text><text x="82" y="44" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">A Sammons Financial Co.</text></svg></div><div class="partner-name">North American</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><rect x="6" y="10" width="26" height="32" rx="3" fill="#003087"/><line x1="6" y1="24" x2="32" y2="14" stroke="white" stroke-width="1.5"/><line x1="6" y1="30" x2="32" y2="22" stroke="white" stroke-width="1.5"/><text x="78" y="22" text-anchor="middle" fill="#003087" font-family="Arial" font-size="11" font-weight="bold">Nationwide</text><text x="78" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="8">is on your side</text></svg></div><div class="partner-name">Nationwide Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="20" cy="26" r="14" fill="#c8102e"/><ellipse cx="20" cy="21" rx="6" ry="7" fill="#f5d5b0"/><rect x="13" y="29" width="14" height="10" rx="2" fill="#1a1a2e"/><text x="75" y="20" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="10" font-weight="bold">Lincoln</text><text x="75" y="33" text-anchor="middle" fill="#c8102e" font-family="Arial" font-size="9" font-weight="bold">Financial</text><text x="75" y="45" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="7">GROUP</text></svg></div><div class="partner-name">Lincoln Financial</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><path d="M10,40 C10,40 20,8 30,8 C40,8 50,40 50,40" fill="none" stroke="#00a0d2" stroke-width="2.5"/><line x1="15" y1="28" x2="45" y2="28" stroke="#00a0d2" stroke-width="1.5"/><text x="85" y="24" text-anchor="middle" fill="#003057" font-family="Arial" font-size="14" font-weight="bold">ATHENE</text><text x="85" y="38" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">ANNUITIES</text></svg></div><div class="partner-name">Athene Annuities</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><rect x="6" y="8" width="36" height="36" rx="5" fill="#f5a623"/><text x="24" y="33" text-anchor="middle" fill="white" font-family="Arial" font-size="16" font-weight="bold">F&amp;G</text><text x="78" y="22" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="11" font-weight="bold">F&amp;G</text><text x="78" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">ANNUITIES &amp; LIFE</text></svg></div><div class="partner-name">F&G Life</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><circle cx="14" cy="16" r="4" fill="#7b2d8b"/><circle cx="24" cy="16" r="4" fill="#7b2d8b" opacity=".6"/><circle cx="19" cy="25" r="4" fill="#7b2d8b" opacity=".4"/><text x="72" y="22" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="12" font-weight="bold">corebridge</text><text x="72" y="34" text-anchor="middle" fill="#7b2d8b" font-family="Arial" font-size="9">financial</text></svg></div><div class="partner-name">Corebridge</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="34" text-anchor="middle" fill="#1a1a2e" font-family="Arial" font-size="22" font-weight="bold" letter-spacing="2">ETHOS</text></svg></div><div class="partner-name">Ethos</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="20" text-anchor="middle" fill="#2563eb" font-family="Arial" font-size="13" font-weight="bold">Agent</text><text x="60" y="34" text-anchor="middle" fill="#16a34a" font-family="Arial" font-size="13" font-weight="bold">Pipeline</text><line x1="8" y1="39" x2="112" y2="39" stroke="#16a34a" stroke-width="1.5"/><text x="60" y="48" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="6">AN INTEGRITY COMPANY</text></svg></div><div class="partner-name">Agent Pipeline</div></div>
+      <div class="partner-item"><div class="partner-logo"><svg viewBox="0 0 120 52" xmlns="http://www.w3.org/2000/svg" width="120" height="52"><rect width="120" height="52" rx="6" fill="#fff"/><text x="60" y="22" text-anchor="middle" fill="#8b1a1a" font-family="Georgia" font-size="11" font-weight="bold">CalChoice</text><text x="60" y="35" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="7">INVESTMENTS INC</text></svg></div><div class="partner-name">CalChoice</div></div>
     </div>
   </div>
 </div>

@@ -33,7 +33,7 @@ nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e
 /* ── HERO ── */
 .hero{background:linear-gradient(135deg,#0a1628 0%,#1a2f5e 55%,#0d1e3a 100%);color:#fff;padding:80px 4% 60px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:-100px;bottom:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,162,39,.1) 0%,transparent 65%);pointer-events:none}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:50px;align-items:center}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
 .hero-tag{display:inline-block;background:rgba(201,162,39,.18);color:#f0c84a;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;border:1px solid rgba(201,162,39,.3)}
 .hero h1{font-family:'Merriweather',serif;font-size:40px;line-height:1.22;margin-bottom:14px;font-weight:700}
 .hero h1 span{color:#c9a227}
@@ -47,7 +47,10 @@ nav{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e
 .pillar-word{font-size:17px;font-weight:700;color:#c9a227;font-family:'Merriweather',serif}
 .pillar-line{font-size:10px;opacity:.6;letter-spacing:1px;text-transform:uppercase}
 
-/* ── ADVISOR CARD ── */
+/* ── HERO IMAGE ── */
+.hero-img-wrap{border-radius:12px;overflow:hidden;position:relative;height:380px;flex-shrink:0;width:100%}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,22,40,.5) 0%,rgba(10,22,40,.1) 100%)}
 .advisor-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:28px 22px;text-align:center}
 .adv-photo-ring{width:130px;height:130px;border-radius:50%;border:3px solid #c9a227;margin:0 auto 14px;overflow:hidden;background:rgba(201,162,39,.15)}
 .adv-photo-ring img{width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -261,8 +264,20 @@ footer a{color:#c9a227;text-decoration:none}
         <div><div class="pillar-word">Legacy</div><div class="pillar-line">Generational Wealth</div></div>
       </div>
     </div>
-    <div class="advisor-card">
-      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:16px;text-align:center">Why Families Choose Lalita</div>
+    <!-- RIGHT: Family Image + Stats Card -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <!-- Family Image -->
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=700&q=80&fit=crop" alt="Happy family of four — husband, wife, son and daughter"/>
+        <div class="hero-img-overlay"></div>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;color:#fff">
+          <div style="font-size:13px;font-weight:700;opacity:.9">Protecting Families Across America</div>
+          <div style="font-size:11px;opacity:.7;margin-top:2px">Your family's security is our mission</div>
+        </div>
+      </div>
+      <!-- Stats Card -->
+      <div class="advisor-card">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:16px;text-align:center">Why Families Choose SafeInvest Financials</div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px">
           <div style="font-size:28px;flex-shrink:0">👨‍👩‍👧‍👦</div>
@@ -354,10 +369,14 @@ footer a{color:#c9a227;text-decoration:none}
       <div class="dtsly-card"><div class="dtsly-emoji">🏥</div><div><h4>"What happens to my family if I get sick or can't work?"</h4><p>1 in 4 workers become disabled before retirement. If your income stopped tomorrow — how long could your family survive? Do you have a plan for that?</p></div></div>
       <div class="dtsly-card"><div class="dtsly-emoji">🎓</div><div><h4>"College is coming fast and I haven't saved enough."</h4><p>Tuition costs rise 6% every year. A 4-year degree can top $200,000. Without a protected education fund, your child's future — or your retirement — could take the hit.</p></div></div>
     </div>
-    <div class="dtsly-cta">
-      <h3>If You Said Yes to Even One of These — Let's Talk.</h3>
-      <p>You deserve a clear financial roadmap. Not a sales pitch. Not a generic plan. A real conversation about your real situation — completely free, no obligation.</p>
-      <a href="#contact" class="btn-gold" style="font-size:15px;padding:14px 32px">Get My Free Financial Roadmap →</a>
+    <div class="dtsly-cta" style="position:relative;overflow:hidden;padding:0">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80&fit=crop" alt="Happy family" style="width:100%;height:220px;object-fit:cover;object-position:center 30%;display:block"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,39,68,.5) 0%,rgba(26,39,68,.92) 55%)"></div>
+      <div style="position:relative;z-index:1;padding:28px 32px 32px;text-align:center">
+        <h3 style="font-family:'Merriweather',serif;font-size:22px;margin-bottom:10px;color:#fff">If You Said Yes to Even One of These — Let's Talk.</h3>
+        <p style="font-size:14px;opacity:.9;margin-bottom:20px;line-height:1.7;color:#fff">You deserve a clear financial roadmap. Not a sales pitch. Not a generic plan. A real conversation about your real situation — completely free, no obligation.</p>
+        <a href="#contact" class="btn-gold" style="font-size:15px;padding:14px 32px">Get My Free Financial Roadmap →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -452,9 +471,16 @@ footer a{color:#c9a227;text-decoration:none}
 <!-- ── WHY ── -->
 <section id="why" class="why-bg">
   <div class="sec-inner">
-    <div class="sec-label">Why SafeInvest Financials</div>
-    <h2 class="sec-title">Why Families Choose Us</h2>
-    <p class="sec-sub">We don't chase returns — we build certainty. Here's what sets us apart.</p>
+    <!-- Image Banner -->
+    <div style="border-radius:12px;overflow:hidden;margin-bottom:36px;position:relative;height:200px">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&fit=crop" alt="Financial advisor meeting with family" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(26,39,68,.85) 0%,rgba(26,39,68,.3) 100%)"></div>
+      <div style="position:absolute;top:50%;left:32px;transform:translateY(-50%);color:#fff">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:6px">Why SafeInvest Financials</div>
+        <h2 style="font-family:'Merriweather',serif;font-size:26px;font-weight:700;margin:0">Why Families Choose Us</h2>
+        <p style="font-size:13px;opacity:.8;margin-top:6px">We don't chase returns — we build certainty.</p>
+      </div>
+    </div>
     <div class="why-grid">
       <div class="why-card"><div class="why-icon">🏆</div><h4>Fortune 50 Carrier Partners</h4><p>We work with the nation's top-rated insurance and financial companies — North American, Mutual of Omaha, Global Atlantic — to bring you best-in-class products.</p></div>
       <div class="why-card"><div class="why-icon">👨‍👩‍👧‍👦</div><h4>400+ Families Served</h4><p>Our team has guided over 400 families with customized financial strategies tailored to each unique stage of life — from young families to retirees.</p></div>
@@ -489,7 +515,16 @@ footer a{color:#c9a227;text-decoration:none}
         <div style="background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);border-radius:10px;padding:16px 20px;font-style:italic;font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.7">"For the right person, HGI is the greatest business opportunity in North America." <strong style="color:#c9a227;font-style:normal">— HGI Leadership</strong></div>
       </div>
     </div>
-    <div style="margin-top:48px;border-top:1px solid rgba(255,255,255,.1);padding-top:40px">
+          <div style="margin-top:48px;border-top:1px solid rgba(255,255,255,.1);padding-top:40px">
+        <!-- Opportunity Image -->
+        <div style="border-radius:12px;overflow:hidden;margin-bottom:28px;position:relative;height:160px">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80&fit=crop" alt="Business team success" style="width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,22,40,.8),rgba(10,22,40,.2))"></div>
+          <div style="position:absolute;top:50%;left:24px;transform:translateY(-50%);color:#fff">
+            <div style="font-size:18px;font-weight:700;font-family:'Merriweather',serif">Build Your Future With Us</div>
+            <div style="font-size:12px;opacity:.75;margin-top:4px">Join a nationwide team of financial professionals</div>
+          </div>
+        </div>
       <div style="text-align:center;margin-bottom:28px">
         <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:8px">Who Thrives Here</div>
         <h3 style="font-family:'Merriweather',serif;font-size:22px;color:#fff;font-weight:700">This Opportunity Is Built for People Like You</h3>

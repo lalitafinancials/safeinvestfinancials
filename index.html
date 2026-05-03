@@ -649,15 +649,19 @@ footer a{color:#c9a227;text-decoration:none}
           </select>
         </div>
         <div class="fg">
-          <label>Preferred Time (CST)</label>
-          <select id="time">
-            <option value="">Select time...</option>
-            <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
-            <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
-            <option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
-            <option>6:00 PM</option><option>7:00 PM</option>
-          </select>
+          <label>Preferred Date</label>
+          <input type="date" id="date" min="" style="cursor:pointer"/>
         </div>
+      </div>
+      <div class="fg">
+        <label>Preferred Time (CST)</label>
+        <select id="time">
+          <option value="">Select time...</option>
+          <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+          <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
+          <option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+          <option>6:00 PM</option><option>7:00 PM</option>
+        </select>
       </div>
       <div class="fg"><label>Your Goals (optional)</label><textarea id="msg" placeholder="e.g. I want to protect my family and retire tax-free by 60..."></textarea></div>
       <button class="submit-btn" id="sub-btn" onclick="doSubmit()">Schedule My Free Consultation →</button>
@@ -718,8 +722,9 @@ async function doSubmit(){
   const em  = document.getElementById('em').value.trim();
   const ph  = document.getElementById('ph').value.trim();
   const svc = document.getElementById('svc').value;
-  const day = document.getElementById('day').value;
-  const time= document.getElementById('time').value;
+  const day  = document.getElementById('day').value;
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
   const msg = document.getElementById('msg').value.trim();
   const btn = document.getElementById('sub-btn');
 

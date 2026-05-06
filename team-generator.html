@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Team Website Generator | SafeInvest Financials</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:#f7f8fc;color:#1a2744;min-height:100vh}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 4%;position:sticky;top:0;z-index:99}
+.nav-inner{max-width:900px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center}
+.nav-logo img{height:48px;object-fit:contain}
+.nav-title{font-size:13px;font-weight:600;color:#1a2744}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0a1628,#1a2f5e);padding:40px 4%;text-align:center;color:#fff}
+.header-tag{display:inline-block;background:rgba(201,162,39,.18);color:#f0c84a;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;border:1px solid rgba(201,162,39,.3)}
+.header h1{font-family:'Merriweather',serif;font-size:32px;font-weight:700;margin-bottom:10px}
+.header h1 span{color:#c9a227}
+.header p{font-size:14px;opacity:.8;max-width:540px;margin:0 auto;line-height:1.8}
+
+/* PROGRESS */
+.progress-bar{background:#1a2744;padding:14px 4%;overflow-x:auto}
+.progress-inner{max-width:900px;margin:0 auto;display:flex;gap:8px}
+.prog-step{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:20px;border:none;cursor:pointer;white-space:nowrap;font-size:12px;font-weight:600;font-family:'Open Sans',sans-serif;transition:all .2s}
+.prog-step.active{background:#c9a227;color:#1a2744}
+.prog-step.done{background:rgba(201,162,39,.2);color:#c9a227}
+.prog-step.pending{background:rgba(255,255,255,.07);color:rgba(255,255,255,.4);cursor:default}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:28px 4%}
+
+/* CARDS */
+.card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(26,39,68,.08);margin-bottom:16px}
+.card-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a227;font-weight:700;margin-bottom:6px}
+.card h2{font-family:'Merriweather',serif;font-size:22px;color:#1a2744;margin-bottom:6px}
+.card p{font-size:13px;color:#6b7280;margin-bottom:22px;line-height:1.7}
+
+/* FORM */
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:700;color:#1a2744;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.fg input,.fg select{width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:'Open Sans',sans-serif;color:#1a2744;outline:none;transition:border .2s;background:#fff}
+.fg input:focus,.fg select:focus{border-color:#c9a227}
+.fg .hint{font-size:11px;color:#9ca3af;margin-top:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* UPLOAD ZONES */
+.upload-zone{border:2px dashed #e2e8f0;border-radius:10px;padding:20px;text-align:center;cursor:pointer;background:#f7f8fc;transition:border-color .2s;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.upload-zone:hover{border-color:#c9a227}
+.upload-zone img{max-height:80px;max-width:100%;object-fit:contain;border-radius:6px}
+.upload-zone .photo-preview{width:80px;height:80px;border-radius:50%;border:3px solid #c9a227;object-fit:cover;object-position:top}
+.upload-icon{font-size:28px;margin-bottom:8px}
+.upload-label{font-size:12px;color:#9ca3af;margin-bottom:4px}
+.upload-name{font-size:11px;color:#c9a227;font-weight:600}
+.upload-success{font-size:11px;color:#276749;margin-top:6px;font-weight:600}
+
+/* BUTTONS */
+.btn-gold{background:#c9a227;color:#1a2744;border:none;border-radius:8px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Open Sans',sans-serif;transition:all .2s;display:inline-block;text-align:center}
+.btn-gold:hover{background:#a8861e;color:#fff}
+.btn-outline{background:#f7f8fc;border:1px solid #e2e8f0;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Open Sans',sans-serif;color:#1a2744}
+.btn-outline:hover{border-color:#c9a227}
+.btn-dark{background:#1a2744;color:#fff;border:none;border-radius:8px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Open Sans',sans-serif}
+.btn-full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+
+/* PROMPT BOX */
+.prompt-box{background:#0a1628;border-radius:10px;padding:20px;color:#fff;font-size:12px;font-family:monospace;line-height:1.7;max-height:300px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;border:1px solid rgba(201,162,39,.2)}
+
+/* PREVIEW CARD */
+.preview-card{background:linear-gradient(135deg,#0a1628,#1a2f5e);border-radius:14px;padding:24px;color:#fff;margin-bottom:16px}
+.preview-photo{width:80px;height:80px;border-radius:50%;border:3px solid #c9a227;object-fit:cover;object-position:top}
+.preview-initials{width:80px;height:80px;border-radius:50%;border:3px solid #c9a227;background:rgba(201,162,39,.15);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#c9a227;font-family:'Merriweather',serif;flex-shrink:0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.info-tile{background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;display:flex;gap:8px;align-items:center;overflow:hidden}
+.info-tile span:last-child{opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* STEP PANELS */
+.step-phase{border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-bottom:14px}
+.phase-head{background:#1a2744;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.phase-num{background:#c9a227;color:#1a2744;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.phase-title{color:#fff;font-weight:700;font-size:14px;margin-left:10px}
+.phase-time{color:#c9a227;font-size:11px;background:rgba(201,162,39,.15);padding:2px 10px;border-radius:20px}
+.phase-body{padding:14px 18px;background:#fff;display:none}
+.phase-body.open{display:block}
+.sub-step{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #f7f8fc;font-size:13px;color:#4a5568;line-height:1.5}
+.sub-num{width:20px;height:20px;border-radius:50%;background:#f0f4ff;border:1px solid #c9a227;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c9a227;font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ALERTS */
+.alert-success{background:#f0faf4;border:1px solid #68d391;border-radius:8px;padding:14px 18px}
+.alert-warn{background:#fff8e6;border:1px solid #f6c94e;border-radius:8px;padding:14px 18px}
+.checklist-item{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:13px;color:#2f855a;cursor:pointer}
+.checklist-item input{width:16px;height:16px;accent-color:#c9a227}
+
+/* COPY ANIMATION */
+.copy-flash{animation:flash .4s ease}
+@keyframes flash{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* FOOTER */
+footer{background:#060d1a;color:rgba(255,255,255,.5);text-align:center;padding:20px 4%;font-size:12px;margin-top:20px}
+footer strong{color:#c9a227}
+footer a{color:#c9a227;text-decoration:none}
+
+@media(max-width:600px){
+  .grid2{grid-template-columns:1fr}
+  .btn-row{grid-template-columns:1fr}
+  .header h1{font-size:24px}
+  .info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html"><img src="logo.png" alt="SafeInvest Financials" onerror="this.style.display='none'"/></a>
+    </div>
+    <div class="nav-title">Team Website Generator</div>
+    <a href="index.html" style="font-size:12px;color:#c9a227;font-weight:600;text-decoration:none">← Back to Main Site</a>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="header-tag">SafeInvest Financials · Internal Tool</div>
+  <h1>Your Site in <span>5 Minutes</span></h1>
+  <p>Fill in your details, click Generate, paste into Claude — your complete professional website is ready to go live.</p>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-inner" id="progress-bar">
+    <button class="prog-step active" onclick="goStep(0)">👤 Your Info</button>
+    <button class="prog-step pending" onclick="goStep(1)">📞 Contact</button>
+    <button class="prog-step pending" onclick="goStep(2)">🖼️ Assets</button>
+    <button class="prog-step pending" onclick="goStep(3)">⚡ Generate</button>
+    <button class="prog-step pending" onclick="goStep(4)">🚀 Go Live</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- STEP 0: Personal Info -->
+  <div id="step-0">
+    <div class="card">
+      <div class="card-tag">Step 1 of 5</div>
+      <h2>Tell Us About You</h2>
+      <p>This becomes your site's name, title, and location — exactly as it will appear to clients.</p>
+      <div class="fg">
+        <label>Full Name *</label>
+        <input id="fullName" type="text" placeholder="e.g. John Smith" oninput="update()"/>
+      </div>
+      <div class="fg">
+        <label>Title / Designation *</label>
+        <select id="title" onchange="update()">
+          <option>Financial Advisor</option>
+          <option>Senior Financial Advisor</option>
+          <option>Regional Marketing Director</option>
+          <option>Regional Director</option>
+          <option>Insurance Specialist</option>
+          <option>Retirement Planning Specialist</option>
+          <option>Associate Financial Advisor</option>
+        </select>
+      </div>
+      <div class="grid2">
+        <div class="fg">
+          <label>City *</label>
+          <input id="city" type="text" placeholder="e.g. Frisco" oninput="update()"/>
+        </div>
+        <div class="fg">
+          <label>State *</label>
+          <input id="state" type="text" placeholder="e.g. TX" oninput="update()" maxlength="2"/>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Specialties (optional)</label>
+        <input id="specialties" type="text" placeholder="e.g. IUL Expert, Estate Planning — leave blank for same as Lalita"/>
+        <div class="hint">Leave blank to use the same services and specialties as Lalita Kumar's site</div>
+      </div>
+    </div>
+    <button class="btn-gold btn-full" onclick="nextStep(0)">Next: Contact Details →</button>
+  </div>
+
+  <!-- STEP 1: Contact -->
+  <div id="step-1" style="display:none">
+    <div class="card">
+      <div class="card-tag">Step 2 of 5</div>
+      <h2>Contact & Online Presence</h2>
+      <p>How clients reach you — goes on your contact form, SMS, and footer.</p>
+      <div class="fg">
+        <label>Your Email Address *</label>
+        <input id="email" type="email" placeholder="john@safeinvestfinancials.com" oninput="update()"/>
+      </div>
+      <div class="fg">
+        <label>Phone / SMS Number *</label>
+        <input id="phone" type="tel" placeholder="+1 (555) 000-0000" oninput="update()"/>
+        <div class="hint">Clients will send SMS to this number when submitting the mobile form</div>
+      </div>
+      <div class="fg">
+        <label>Facebook Page URL</label>
+        <input id="facebook" type="url" placeholder="https://facebook.com/your-page" value="https://www.facebook.com/p/SafeInvest-Financials-61584564256822/"/>
+        <div class="hint">Leave as-is to use the SafeInvest Financials main page</div>
+      </div>
+      <div class="fg">
+        <label>Zoom Meeting Link</label>
+        <input id="zoom" type="url" value="https://us06web.zoom.us/j/8349158830" placeholder="https://us06web.zoom.us/j/..."/>
+        <div class="hint">Your personal Zoom link for consultations</div>
+      </div>
+      <div class="fg">
+        <label>Custom Domain (optional)</label>
+        <input id="domain" type="text" placeholder="www.johnsmith-financials.com" oninput="update()"/>
+        <div class="hint">Leave blank — your site will use a free GitHub URL until you connect a domain</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-outline" onclick="prevStep(1)">← Back</button>
+      <button class="btn-gold" onclick="nextStep(1)">Next: Upload Assets →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Assets -->
+  <div id="step-2" style="display:none">
+    <div class="card">
+      <div class="card-tag">Step 3 of 5</div>
+      <h2>Logo & Profile Photo</h2>
+      <p>Preview your images here. You'll upload the actual files to GitHub in Step 5.</p>
+      <div class="grid2">
+        <div class="fg">
+          <label>Company Logo</label>
+          <div class="upload-zone" onclick="document.getElementById('logoInput').click()">
+            <img id="logoPreview" src="logo.png" alt="Logo" onerror="this.style.display='none';document.getElementById('logoPlaceholder').style.display='flex'" style="max-height:70px;max-width:100%;object-fit:contain"/>
+            <div id="logoPlaceholder" style="display:none;flex-direction:column;align-items:center">
+              <div class="upload-icon">🏢</div>
+              <div class="upload-label">Click to preview logo</div>
+              <div class="upload-name">logo.png</div>
+            </div>
+          </div>
+          <input id="logoInput" type="file" accept="image/*" onchange="previewLogo(this)" style="display:none"/>
+          <div id="logoSuccess" class="upload-success" style="display:none"></div>
+        </div>
+        <div class="fg">
+          <label>Your Profile Photo</label>
+          <div class="upload-zone" onclick="document.getElementById('photoInput').click()">
+            <img id="photoPreview" style="display:none" class="photo-preview" alt="Profile"/>
+            <div id="photoPlaceholder" style="display:flex;flex-direction:column;align-items:center">
+              <div class="upload-icon">👤</div>
+              <div class="upload-label">Click to preview photo</div>
+              <div class="upload-name" id="photoName">photo.jpg</div>
+            </div>
+          </div>
+          <input id="photoInput" type="file" accept="image/*" onchange="previewPhoto(this)" style="display:none"/>
+          <div id="photoSuccess" class="upload-success" style="display:none"></div>
+        </div>
+      </div>
+      <div class="alert-warn" style="margin-top:4px">
+        <div style="font-weight:700;color:#92610a;font-size:13px;margin-bottom:4px">⚠️ Important File Names</div>
+        <div style="font-size:12px;color:#7c5a0a;line-height:1.6">When uploading to GitHub, save your logo as <strong>logo.png</strong> and your photo as <strong id="photoFileName">photo.jpg</strong>. These exact names are used in your generated site.</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-outline" onclick="prevStep(2)">← Back</button>
+      <button class="btn-gold" onclick="nextStep(2)">Next: Generate Site →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Generate -->
+  <div id="step-3" style="display:none">
+    <div class="preview-card" id="previewCard">
+      <div style="display:flex;gap:16px;align-items:center">
+        <img id="prevPhoto" class="preview-photo" style="display:none" alt="Preview"/>
+        <div id="prevInitials" class="preview-initials">?</div>
+        <div>
+          <div id="prevName" style="font-size:20px;font-weight:700;font-family:'Merriweather',serif">Your Name</div>
+          <div id="prevTitle" style="color:#c9a227;font-size:12px;letter-spacing:.8px;margin-top:2px">Financial Advisor</div>
+          <div id="prevLocation" style="font-size:12px;opacity:.7;margin-top:2px">Location · All 50 States</div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-tile"><span>📧</span><span id="prevEmail">—</span></div>
+        <div class="info-tile"><span>📱</span><span id="prevPhone">—</span></div>
+        <div class="info-tile"><span>🌐</span><span id="prevDomain">—</span></div>
+        <div class="info-tile"><span>🎥</span><span>Zoom configured</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Step 4 of 5</div>
+      <h2>Optional: Google Setup</h2>
+      <p>Add your Google Sheet ID and Script URL to enable automatic contact logging and email notifications. Skip for now and add later.</p>
+      <div class="fg">
+        <label>Google Sheet ID</label>
+        <input id="sheetId" type="text" placeholder="Paste your Sheet ID here (from Google Sheets URL)"/>
+        <div class="hint">Found in the URL: docs.google.com/spreadsheets/d/<strong>[THIS PART]</strong>/edit</div>
+      </div>
+      <div class="fg">
+        <label>Google Apps Script URL</label>
+        <input id="scriptUrl" type="text" placeholder="https://script.google.com/macros/s/.../exec"/>
+        <div class="hint">Generated when you deploy your Apps Script as a Web App</div>
+      </div>
+    </div>
+
+    <button class="btn-gold btn-full" onclick="copyPrompt()" id="copyBtn" style="font-size:15px;padding:16px;margin-bottom:12px">
+      ⚡ Copy Claude Prompt → Generate My Site
+    </button>
+    <div id="copySuccess" class="alert-success" style="display:none;margin-bottom:12px">
+      <div style="font-weight:700;color:#276749;font-size:14px;margin-bottom:8px">✅ Prompt Copied! Now do this:</div>
+      <ol style="font-size:13px;color:#2f855a;padding-left:18px;line-height:2">
+        <li>Open <strong><a href="https://claude.ai" target="_blank" style="color:#c9a227">claude.ai</a></strong> in a new tab</li>
+        <li>Paste the prompt (Ctrl+V / Cmd+V) and press Enter</li>
+        <li>Claude generates your complete <strong>index.html</strong> file</li>
+        <li>Copy the code → save as <strong>index.html</strong> on your computer</li>
+        <li>Come back here and click "Continue to Deploy Steps"</li>
+      </ol>
+      <button class="btn-dark" onclick="nextStep(3)" style="margin-top:12px">Continue to Deploy Steps →</button>
+    </div>
+    <div class="btn-row" style="margin-top:4px">
+      <button class="btn-outline" onclick="prevStep(3)">← Back</button>
+      <button class="btn-outline" onclick="showPrompt()" id="viewPromptBtn">👁 View Full Prompt</button>
+    </div>
+    <div id="promptPreview" style="display:none;margin-top:12px">
+      <div style="font-size:12px;color:#6b7280;margin-bottom:6px;font-weight:600">Full Claude Prompt:</div>
+      <div class="prompt-box" id="promptText"></div>
+    </div>
+  </div>
+
+  <!-- STEP 4: Deploy -->
+  <div id="step-4" style="display:none">
+    <div class="card" style="padding-bottom:8px">
+      <div class="card-tag">Step 5 of 5</div>
+      <h2>🚀 Go Live — Baby Steps</h2>
+      <p>Follow these steps in order. Click each phase to expand it. Total time: about 30 minutes.</p>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(1)">
+        <div style="display:flex;align-items:center"><div class="phase-num">1</div><div class="phase-title">Create GitHub Account</div></div>
+        <div class="phase-time">~2 min</div>
+      </div>
+      <div class="phase-body" id="phase-1">
+        <div class="sub-step"><div class="sub-num">1</div>Go to <strong>github.com</strong> → click <strong>Sign up</strong></div>
+        <div class="sub-step"><div class="sub-num">2</div>Choose a username — e.g. <strong id="suggestedUser">johnfinancials</strong></div>
+        <div class="sub-step"><div class="sub-num">3</div>Enter your email and create a password</div>
+        <div class="sub-step"><div class="sub-num">4</div>Verify your email address (check inbox for code)</div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(2)">
+        <div style="display:flex;align-items:center"><div class="phase-num">2</div><div class="phase-title">Create Repository</div></div>
+        <div class="phase-time">~1 min</div>
+      </div>
+      <div class="phase-body" id="phase-2">
+        <div class="sub-step"><div class="sub-num">1</div>Once logged in → click the green <strong>"+ New"</strong> button (top left)</div>
+        <div class="sub-step"><div class="sub-num">2</div>Repository name: <strong id="repoNameDisplay">safeinvest-john</strong></div>
+        <div class="sub-step"><div class="sub-num">3</div>Select <strong>Public</strong></div>
+        <div class="sub-step"><div class="sub-num">4</div>Click <strong>Create repository</strong></div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(3)">
+        <div style="display:flex;align-items:center"><div class="phase-num">3</div><div class="phase-title">Upload Your Files</div></div>
+        <div class="phase-time">~3 min</div>
+      </div>
+      <div class="phase-body" id="phase-3">
+        <div class="sub-step"><div class="sub-num">1</div>Make sure your generated file is named exactly: <strong>index.html</strong></div>
+        <div class="sub-step"><div class="sub-num">2</div>Make sure your photo is named: <strong id="photoNameDisplay">photo.jpg</strong></div>
+        <div class="sub-step"><div class="sub-num">3</div>Copy <strong>logo.png</strong> from Lalita's repo (or use your own)</div>
+        <div class="sub-step"><div class="sub-num">4</div>In your GitHub repo → click <strong>"Add file"</strong> → <strong>"Upload files"</strong></div>
+        <div class="sub-step"><div class="sub-num">5</div>Drag and drop all 3 files: index.html, your photo, logo.png</div>
+        <div class="sub-step"><div class="sub-num">6</div>Click <strong>Commit changes</strong> → <strong>Commit changes</strong> again</div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(4)">
+        <div style="display:flex;align-items:center"><div class="phase-num">4</div><div class="phase-title">Enable GitHub Pages</div></div>
+        <div class="phase-time">~2 min</div>
+      </div>
+      <div class="phase-body" id="phase-4">
+        <div class="sub-step"><div class="sub-num">1</div>In your repo → click <strong>Settings</strong> tab (gear icon, far right)</div>
+        <div class="sub-step"><div class="sub-num">2</div>In the left sidebar → scroll down → click <strong>Pages</strong></div>
+        <div class="sub-step"><div class="sub-num">3</div>Under Branch → select <strong>main</strong> → select <strong>/ (root)</strong></div>
+        <div class="sub-step"><div class="sub-num">4</div>Click <strong>Save</strong> → wait 3 minutes</div>
+        <div class="sub-step"><div class="sub-num">5</div>Your site goes live at: <strong id="githubPagesUrl">https://johnfinancials.github.io/safeinvest-john</strong></div>
+        <div class="sub-step"><div class="sub-num">6</div>Open that URL in your browser to verify it works ✅</div>
+      </div>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(5)">
+        <div style="display:flex;align-items:center"><div class="phase-num">5</div><div class="phase-title">Set Up Google Sheet + Contact Logging</div></div>
+        <div class="phase-time">~10 min</div>
+      </div>
+      <div class="phase-body" id="phase-5">
+        <div class="sub-step"><div class="sub-num">1</div>Go to <strong>sheets.google.com</strong> → click + to create new sheet</div>
+        <div class="sub-step"><div class="sub-num">2</div>Name it: <strong id="sheetNameDisplay">John Contact Log</strong></div>
+        <div class="sub-step"><div class="sub-num">3</div>Right-click the <strong>Sheet1</strong> tab at bottom → Rename → type <strong>Contact Log</strong></div>
+        <div class="sub-step"><div class="sub-num">4</div>Copy the Sheet ID from the URL (the long string between /d/ and /edit)</div>
+        <div class="sub-step"><div class="sub-num">5</div>In the sheet → click <strong>Extensions</strong> → <strong>Apps Script</strong></div>
+        <div class="sub-step"><div class="sub-num">6</div>Delete existing code (Ctrl+A → Delete) → paste the SafeInvest Contact Handler script</div>
+        <div class="sub-step"><div class="sub-num">7</div>Update: <code>SPREADSHEET_ID</code> = your Sheet ID, <code>EMAIL_1</code> = your email</div>
+        <div class="sub-step"><div class="sub-num">8</div>Click 💾 Save → select <strong>testSheet</strong> from dropdown → click ▶ Run</div>
+        <div class="sub-step"><div class="sub-num">9</div>If permission popup → click <strong>Advanced</strong> → <strong>Go to (unsafe)</strong> → <strong>Allow</strong></div>
+        <div class="sub-step"><div class="sub-num">10</div>Check your Google Sheet — you should see a test row ✅</div>
+        <div class="sub-step"><div class="sub-num">11</div>Select <strong>testEmail</strong> → Run → check your email inbox ✅</div>
+        <div class="sub-step"><div class="sub-num">12</div>Click <strong>Deploy</strong> → <strong>New deployment</strong> → ⚙️ gear → <strong>Web app</strong></div>
+        <div class="sub-step"><div class="sub-num">13</div>Execute as: <strong>Me</strong> · Who has access: <strong>Anyone</strong> → click <strong>Deploy</strong></div>
+        <div class="sub-step"><div class="sub-num">14</div>Copy the Web App URL → update <code>SCRIPT_URL</code> in index.html → re-upload to GitHub</div>
+      </div>
+    </div>
+
+    <!-- Phase 6 -->
+    <div class="step-phase">
+      <div class="phase-head" onclick="togglePhase(6)">
+        <div style="display:flex;align-items:center"><div class="phase-num">6</div><div class="phase-title">Custom Domain (Optional)</div></div>
+        <div class="phase-time">~15 min</div>
+      </div>
+      <div class="phase-body" id="phase-6">
+        <div class="sub-step"><div class="sub-num">1</div>In GitHub → Settings → Pages → Custom domain → enter: <strong id="customDomainDisplay">your domain</strong></div>
+        <div class="sub-step"><div class="sub-num">2</div>In your DNS provider (Wix/Namecheap/GoDaddy) → DNS Records</div>
+        <div class="sub-step"><div class="sub-num">3</div>Delete existing A records → Add 4 new A records (Host = @):<br/><code>185.199.108.153 · 185.199.109.153 · 185.199.110.153 · 185.199.111.153</code></div>
+        <div class="sub-step"><div class="sub-num">4</div>Add CNAME record: Host = <strong>www</strong>, Value = <strong id="cnameDomain">username.github.io</strong></div>
+        <div class="sub-step"><div class="sub-num">5</div>Wait 30–60 minutes → return to GitHub Pages → check the <strong>Enforce HTTPS</strong> box</div>
+        <div class="sub-step"><div class="sub-num">6</div>Visit your domain — 🔒 padlock should appear ✅</div>
+      </div>
+    </div>
+
+    <!-- Final Checklist -->
+    <div class="card">
+      <div style="font-weight:700;color:#1a2744;font-size:15px;margin-bottom:14px">✅ Final Verification Checklist</div>
+      <div style="font-size:12px;color:#6b7280;margin-bottom:12px">Check each item as you verify it:</div>
+      <div id="checklist">
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Site loads at your URL</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Logo shows correctly</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Profile photo shows correctly</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Contact form submits successfully</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Google Sheet gets a new row</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Email notification received</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> .ics calendar download works</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Google Calendar button works</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> Mobile hamburger menu works</label>
+        <label class="checklist-item"><input type="checkbox" onchange="checkProgress()"> HTTPS padlock visible</label>
+      </div>
+      <div id="checklistComplete" style="display:none;margin-top:16px;background:linear-gradient(135deg,#0a1628,#1a2f5e);border-radius:10px;padding:20px;text-align:center;color:#fff">
+        <div style="font-size:32px;margin-bottom:8px">🎉</div>
+        <div style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;margin-bottom:6px">You're Live!</div>
+        <div style="font-size:13px;opacity:.8;margin-bottom:14px">Your SafeInvest Financials website is up and running. Time to help families!</div>
+        <button class="btn-gold" onclick="location.reload()">+ Create Another Team Member Site</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>SafeInvest Financials</strong> · Internal Team Tool · <a href="index.html">← Back to Main Site</a><br/>
+  <span style="font-size:11px;opacity:.5;margin-top:6px;display:block">For support, contact safeinvestfinancials@gmail.com</span>
+</footer>
+
+<script>
+// ── State ──
+let photoFileName = 'photo.jpg';
+let currentStep = 0;
+
+function g(id){ return document.getElementById(id); }
+function val(id){ return (g(id) && g(id).value) ? g(id).value.trim() : ''; }
+
+// ── Navigation ──
+function goStep(n){
+  if(n > currentStep) return;
+  for(let i=0;i<5;i++) g('step-'+i).style.display = i===n ? 'block' : 'none';
+  updateProgress(n);
+  currentStep = n;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextStep(from){
+  if(from===0 && (!val('fullName')||!val('city'))) return alert('Please fill in your Full Name and City.');
+  if(from===1 && (!val('email')||!val('phone'))) return alert('Please fill in your Email and Phone number.');
+  const next = from + 1;
+  g('step-'+from).style.display='none';
+  g('step-'+next).style.display='block';
+  updateProgress(next);
+  currentStep = next;
+  if(next===3) updatePreview();
+  if(next===4) updateDeploySteps();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function prevStep(from){
+  const prev = from - 1;
+  g('step-'+from).style.display='none';
+  g('step-'+prev).style.display='block';
+  updateProgress(prev);
+  currentStep = prev;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(active){
+  const steps = document.querySelectorAll('.prog-step');
+  steps.forEach((s,i)=>{
+    s.className = 'prog-step ' + (i<active?'done':i===active?'active':'pending');
+    if(i<active) s.innerHTML = s.innerHTML.replace('✓','') + ' ✓';
+  });
+}
+
+// ── Preview ──
+function previewPhoto(input){
+  const f = input.files[0];
+  if(!f) return;
+  photoFileName = f.name;
+  g('photoName').textContent = f.name;
+  g('photoFileName').textContent = f.name;
+  g('photoSuccess').textContent = '✅ ' + f.name;
+  g('photoSuccess').style.display = 'block';
+  const reader = new FileReader();
+  reader.onload = e => {
+    g('photoPreview').src = e.target.result;
+    g('photoPreview').style.display = 'block';
+    g('photoPlaceholder').style.display = 'none';
+  };
+  reader.readAsDataURL(f);
+}
+
+function previewLogo(input){
+  const f = input.files[0];
+  if(!f) return;
+  g('logoSuccess').textContent = '✅ ' + f.name;
+  g('logoSuccess').style.display = 'block';
+  const reader = new FileReader();
+  reader.onload = e => {
+    g('logoPreview').src = e.target.result;
+    g('logoPreview').style.display = 'block';
+    g('logoPlaceholder').style.display = 'none';
+  };
+  reader.readAsDataURL(f);
+}
+
+function update(){
+  const name = val('fullName');
+  if(name && g('prevName')) g('prevName').textContent = name;
+}
+
+function updatePreview(){
+  const name = val('fullName');
+  const first = name.split(' ')[0] || 'You';
+  g('prevName').textContent = name || 'Your Name';
+  g('prevTitle').textContent = val('title') || 'Financial Advisor';
+  g('prevLocation').textContent = [val('city'),val('state')].filter(Boolean).join(', ') + ' · All 50 States';
+  g('prevEmail').textContent = val('email') || '—';
+  g('prevPhone').textContent = val('phone') || '—';
+  const repo = 'safeinvest-' + first.toLowerCase();
+  g('prevDomain').textContent = val('domain') || `${first.toLowerCase()}financials.github.io/${repo}`;
+  const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) || '?';
+  g('prevInitials').textContent = initials;
+  const photoSrc = g('photoPreview').src;
+  if(photoSrc && !photoSrc.includes('undefined')){
+    g('prevPhoto').src = photoSrc;
+    g('prevPhoto').style.display = 'block';
+    g('prevInitials').style.display = 'none';
+  }
+}
+
+function updateDeploySteps(){
+  const name = val('fullName');
+  const first = (name.split(' ')[0] || 'john').toLowerCase();
+  const repo = 'safeinvest-' + first;
+  const user = first + 'financials';
+  if(g('suggestedUser')) g('suggestedUser').textContent = user;
+  if(g('repoNameDisplay')) g('repoNameDisplay').textContent = repo;
+  if(g('photoNameDisplay')) g('photoNameDisplay').textContent = photoFileName;
+  if(g('sheetNameDisplay')) g('sheetNameDisplay').textContent = (name.split(' ')[0]||'Your') + ' Contact Log';
+  if(g('githubPagesUrl')) g('githubPagesUrl').textContent = `https://${user}.github.io/${repo}`;
+  if(g('customDomainDisplay')) g('customDomainDisplay').textContent = val('domain') || 'your-domain.com';
+  if(g('cnameDomain')) g('cnameDomain').textContent = user + '.github.io';
+  // open first phase
+  togglePhase(1);
+}
+
+// ── Generate Prompt ──
+function generatePrompt(){
+  const name = val('fullName') || 'Team Member';
+  const first = name.split(' ')[0];
+  const repo = 'safeinvest-' + first.toLowerCase();
+  const domain = val('domain') || `${first.toLowerCase()}financials.github.io/${repo}`;
+  return `You are the same web designer who built the SafeInvest Financials website at www.safeinvestfinancials.com for Lalita Kumar. Create a NEW advisor website that is an EXACT mirror of Lalita's site — same design, layout, colors, all sections, all functionality — but personalized for this team member.
+
+═══════════════════════════════════════
+TEAM MEMBER DETAILS
+═══════════════════════════════════════
+Full Name:        ${name}
+Title:            ${val('title') || 'Financial Advisor'}
+Location:         ${val('city')}, ${val('state')}
+Email:            ${val('email') || 'ENTER_EMAIL'}
+Phone (SMS):      ${val('phone') || 'ENTER_PHONE'}
+Facebook:         ${val('facebook') || 'https://www.facebook.com/p/SafeInvest-Financials-61584564256822/'}
+Zoom Link:        ${val('zoom') || 'https://us06web.zoom.us/j/8349158830'}
+Domain:           ${domain}
+Photo filename:   ${photoFileName}
+Logo filename:    logo.png
+Google Sheet ID:  ${val('sheetId') || 'PASTE_SHEET_ID_HERE'}
+Script URL:       ${val('scriptUrl') || 'PASTE_SCRIPT_URL_HERE'}
+${val('specialties') ? 'Specialties:      ' + val('specialties') : 'Specialties:      Same as Lalita Kumar'}
+
+═══════════════════════════════════════
+BUILD REQUIREMENTS — include ALL of these
+═══════════════════════════════════════
+✅ Nav: SafeInvest logo (logo.png) 48px, height 64px, all 6 links: About · Services · Why Us · Join Us · Articles · Free Consultation
+✅ Hero: Left = tag + h1 + subtext + 2 buttons + pillars + bottom image. Right = family photo card (pexels) + stats card with 5 metrics
+✅ Trust bar: dark navy, 6 scrolling trust items
+✅ Services: 8 cards — first card = "Grow Wealth with Zero Market Loss Risk" (NOT IUL)
+✅ Impact banner: animated counters (400+, $50M+, 50 states, 98%) + progress bar
+✅ "Does This Sound Like You?": 6 scenario cards + CTA with image overlay
+✅ About: Single profile — ${name}'s photo (${photoFileName}), bio WITHOUT HGI references, Integrity platform tiles, 4 navy info tiles
+✅ Partners ticker: 18 carriers, brand-colored text cards with left border, auto-scrolling
+✅ Why Us: image banner overlay + 6 cards
+✅ Join the Business: dark navy section, 4 feature cards, 4 persona tiles
+✅ Articles: 6 preview cards linking to articles/ folder
+✅ Contact form fields: First Name, Last Name, Email, Phone, Service (dropdown), Preferred Day, Preferred Date (date picker, min=today), Preferred Time (CST), Goals
+✅ Form behavior: Desktop = POST to Google Apps Script. Mobile = same + opens SMS to ${val('phone') || 'ENTER_PHONE'}
+✅ After submit: show .ics Apple/Outlook button + Google Calendar button
+✅ Mobile: hamburger menu (☰), all grids responsive, 2→1 column on mobile
+✅ Colors: Navy #1a2744, Gold #c9a227. ALL gold buttons must have dark navy #1a2744 text (NOT white)
+✅ Footer: ${name} · ${val('title') || 'Financial Advisor'} · ${val('city')}, ${val('state')} · ${val('email') || 'ENTER_EMAIL'}
+
+Output: ONE complete ready-to-upload index.html. No placeholders except Sheet ID and Script URL if not provided above.`;
+}
+
+function copyPrompt(){
+  const prompt = generatePrompt();
+  navigator.clipboard.writeText(prompt).then(()=>{
+    g('copyBtn').textContent = '✅ Prompt Copied to Clipboard!';
+    g('copyBtn').style.background = '#276749';
+    g('copyBtn').style.color = '#fff';
+    g('copySuccess').style.display = 'block';
+    g('promptText').textContent = prompt;
+    setTimeout(()=>{
+      g('copyBtn').textContent = '⚡ Copy Claude Prompt → Generate My Site';
+      g('copyBtn').style.background = '';
+      g('copyBtn').style.color = '';
+    }, 4000);
+  });
+}
+
+function showPrompt(){
+  const box = g('promptPreview');
+  g('promptText').textContent = generatePrompt();
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  g('viewPromptBtn').textContent = box.style.display === 'none' ? '👁 View Full Prompt' : '🙈 Hide Prompt';
+}
+
+// ── Deploy Steps Accordion ──
+function togglePhase(n){
+  const body = g('phase-'+n);
+  body.className = body.className === 'phase-body open' ? 'phase-body' : 'phase-body open';
+}
+
+// ── Checklist ──
+function checkProgress(){
+  const boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+  const checked = Array.from(boxes).filter(b=>b.checked).length;
+  if(checked === boxes.length) g('checklistComplete').style.display = 'block';
+}
+</script>
+</body>
+</html>
